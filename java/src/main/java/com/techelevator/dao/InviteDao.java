@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface InviteDao {
 
-    void create(Invite invite);
+    void createInvite(Invite invite);
 
-    void update(Invite Invite);
+    void updateInvite(Invite invite);
 
-    void delete(int inviteId);
+    void deleteInvite(int inviteId);
 
     Invite getInviteById(int inviteId);
 

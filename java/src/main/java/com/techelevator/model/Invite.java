@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.util.Arrays;
+
 public class Invite {
     private int inviteId;
     private int senderId;
@@ -36,6 +38,8 @@ public class Invite {
 
     public void setPlaceIds(int[] placeId) {
         this.placeIds = placeId;
+        //this might require converting the string received from mapRowToInvite
+        //method in Jdbc into an array
     }
 
     public Invite() { }
@@ -56,7 +60,7 @@ public class Invite {
                 "transfer_id=" + inviteId +
                 ", transfer_type_id=" + senderId +
                 ", transfer_status_id=" + date +
-                ", account_from=" + placeIds +
+                ", account_from=" + Arrays.toString(placeIds) +
                 '}';
     }
 }
