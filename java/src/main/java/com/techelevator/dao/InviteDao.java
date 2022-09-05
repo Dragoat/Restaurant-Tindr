@@ -13,9 +13,9 @@ public interface InviteDao {
 
     void deleteInvite(int inviteId);
 
-    Invite getInviteById(int inviteId);
+    Invite getInviteByInviteId(int inviteId) throws Exception;
 
-    List<Invite> findAllSentInvitesByUserId(int userId);
+    List<Invite> findAllSentInvitesByUserId(int userId) throws Exception;
     List<Invite> findAllSentInvitesByUserIdLimitedByDate(int userId, String date);
 
 

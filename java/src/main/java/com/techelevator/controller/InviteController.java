@@ -21,8 +21,8 @@ public class InviteController {
     private InviteDao inviteDao;
 
 
-    @GetMapping(value = "/{sender_id}")
-    public List<Invite> getInvitesBySenderId(@PathVariable int sender_id) throws Exception{
+    @GetMapping(value = "/sender/{sender_id}")
+    public List<Invite> getInvitesBySenderId(@PathVariable Integer sender_id) throws Exception {
         List<Invite> invites = null;
         invites = inviteDao.findAllSentInvitesByUserId(sender_id);
         return invites;
@@ -33,30 +33,24 @@ public class InviteController {
         inviteDao.createInvite(invite);
     }
 
-    @PutMapping(value = "{invite_id}")
-    public void updateInvite(@RequestBody Invite invite) {
+    @PutMapping(value = "/{invite_id}")
+    public void updateInviteDate(@RequestBody Invite invite) {
         inviteDao.updateInvite(invite);
     }
 
-    @DeleteMapping(value = "{invite_id}")
-    public void deleteInvite(@RequestBody Invite invite) {
-        inviteDao.updateInvite(invite);
+    @DeleteMapping(value = "/{invite_id}")
+    public void deleteInvite(@RequestBody int invite_id) {
+        inviteDao.deleteInvite(invite_id);
     }
 
-    @Override
-    public Invite getInviteById(int inviteId) {
-        return null;
+    @GetMapping(value = "/{invite_id}")
+    public Invite getInviteById(Integer inviteId) throws Exception {
+       return inviteDao.getInviteByInviteId(inviteId);
     }
 
-    @Override
-    public List<Invite> findAllSentInvitesByUserId(int userId) {
-        return null;
-    }
 
-    @Override
-    public List<Invite> findAllSentInvitesByUserIdLimitedByDate(int userId, String date) {
-        return null;
-    }
+
+
 
 
 
