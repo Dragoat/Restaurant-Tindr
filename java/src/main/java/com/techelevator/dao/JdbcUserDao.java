@@ -4,14 +4,12 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException.NotFound;
 
 import com.techelevator.model.User;
 
@@ -74,7 +72,6 @@ public class JdbcUserDao implements UserDao {
         throw new UsernameNotFoundException("email " + email + " nout found");
     }
 
-    @Override
     public boolean create(String username, String password, String role, String email) {
         boolean userCreated = false;
 
