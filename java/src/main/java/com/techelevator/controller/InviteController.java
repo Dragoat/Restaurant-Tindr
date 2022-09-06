@@ -33,18 +33,18 @@ public class InviteController {
         inviteDao.createInvite(invite);
     }
 
-    @PutMapping(value = "/{invite_id}")
+    @PutMapping(value = "")
     public void updateInviteDate(@RequestBody Invite invite) {
         inviteDao.updateInvite(invite);
     }
 
-    @DeleteMapping(value = "/{invite_id}")
+    @DeleteMapping(value = "/")
     public void deleteInvite(@RequestBody int invite_id) {
         inviteDao.deleteInvite(invite_id);
     }
 
-    @GetMapping(value = "/{invite_id}")
-    public Invite getInviteById(Integer inviteId) throws Exception {
+    @GetMapping(value = "/{inviteId}")
+    public Invite getInviteById(@PathVariable Integer inviteId) throws Exception {
        return inviteDao.getInviteByInviteId(inviteId);
     }
 
