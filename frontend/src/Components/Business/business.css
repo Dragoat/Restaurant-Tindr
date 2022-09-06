@@ -1,0 +1,14 @@
+.business {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20rem;
+    margin-top: 10px;
+    border: 1px solid black;
+}
+
+.business-image {
+    width: 18rem;
+    height: 10rem;
+}
+
