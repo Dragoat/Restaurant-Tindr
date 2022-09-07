@@ -26,10 +26,16 @@ public class JdbcInviteDao implements InviteDao{
 
     @Override
     public void createInvite(Invite invite) {
-        String sql = "INSERT INTO invite (sender_id, appointment, place_ids)  VALUES (?,?,?) RETURNING invite_id;";
         int newInviteId;
-        newInviteId = jdbcTemplate.queryForObject(sql, Integer.class,invite.getSenderId(),invite.getDate(),invite.getPlaceIds());
-        invite.setInviteId(newInviteId);
+        boolean inviteCreated = false;
+
+        String createInvite = "INSERT INTO invite (sender_id, appointment, place_ids)  VALUES (?,?,?) RETURNING invite_id;";
+
+        
+        
+        if(inviteCreated) {
+        System.out.println("Invite created, invite id is " + invite.getInviteId());
+        }
         //the database auto increments the inviteId and the sql syntax does create a new invite when posted in pgAdmin
         // but im still trying to figure out why it doesnt work here  somthing about the request is wrong.
         // last night it seemed like the jason wasnt passing in but not sure
