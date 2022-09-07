@@ -70,7 +70,7 @@ public class JdbcUserDao implements UserDao {
                 return user;
             }
         }
-        throw new UsernameNotFoundException("email " + email + " nout found");
+        throw new UsernameNotFoundException("email " + email + " not found");
     }
 
     public boolean create(String username, String password, String role, String email) {

@@ -42,9 +42,8 @@ public class Invite {
 
     public Invite() { }
 
-    public Invite(int inviteId, int senderId, String date,String placeIds) {
+    public Invite( int senderId, String date,String placeIds) {
 
-        this.inviteId = inviteId;
         this.senderId = senderId;
         this.date = date;
         this. placeIds = placeIds;
