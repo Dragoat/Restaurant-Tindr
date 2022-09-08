@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface InviteDao {
 
-    void createInvite(Invite invite);
+    boolean createInvite(Invite invite);
 
     void updateInvite(Invite invite);
 
@@ -19,13 +19,7 @@ public interface InviteDao {
     Invite getInviteByInviteId(int inviteId) throws Exception;
 
     List<Invite> findAllSentInvitesByUserId(int userId) throws Exception;
+
     List<Invite> findAllSentInvitesByUserIdLimitedByDate(int userId, String date);
-
-
-
-
-
-
-
 
 }

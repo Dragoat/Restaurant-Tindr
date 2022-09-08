@@ -3,48 +3,56 @@ package com.techelevator.dao;
 import com.techelevator.model.Invite;
 import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 @Component
-public class JdbcInviteDao implements InviteDao{
+public class JdbcInviteDao implements InviteDao {
 
     private JdbcTemplate jdbcTemplate;
-
 
     public JdbcInviteDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
-
     @Override
-    public void createInvite(Invite invite) {
-        int newInviteId;
+    public boolean createInvite(Invite invite) {
         boolean inviteCreated = false;
+        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+        String id_column = "invite_id";
 
-        String createInvite = "INSERT INTO invite (sender_id, appointment, place_ids)  VALUES (?,?,?) RETURNING invite_id;";
+        String createNewInvite = "INSERT INTO invite (sender_id, appointment, place_ids)  VALUES (?,?,?) RETURNING invite_id;";
 
-        
-        
-        if(inviteCreated) {
-        System.out.println("Invite created, invite id is " + invite.getInviteId());
-        }
-        //the database auto increments the inviteId and the sql syntax does create a new invite when posted in pgAdmin
-        // but im still trying to figure out why it doesnt work here  somthing about the request is wrong.
+        inviteCreated = jdbcTemplate.update(con -> {
+            PreparedStatement statement = con.prepareStatement(createNewInvite, new String[] { id_column });
+            statement.setInt(1, invite.getSenderId());
+            statement.setString(2, invite.getDate());
+            statement.setString(3, invite.getPlaceIds());
+            return statement;
+        }, keyHolder) == 1;
+
+        int newInviteId = (int) keyHolder.getKeys().get(id_column);
+
+        System.out.println(inviteCreated);
+        return inviteCreated;
+        // the database auto increments the inviteId and the sql syntax does create a
+        // new invite when posted in pgAdmin
+        // but im still trying to figure out why it doesnt work here somthing about the
+        // request is wrong.
         // last night it seemed like the jason wasnt passing in but not sure
     }
 
     @Override
-    public void updateInvite(Invite invite){
+    public void updateInvite(Invite invite) {
         String sql = "Set (sender_id, appointment, place_ids)  VALUES (?,?,?) WHERE invite_id = ?";
-        jdbcTemplate.update(sql,invite.getSenderId(),invite.getDate(),invite.getPlaceIds(), invite.getInviteId());
+        jdbcTemplate.update(sql, invite.getSenderId(), invite.getDate(), invite.getPlaceIds(), invite.getInviteId());
     }
 
     @Override
@@ -56,26 +64,26 @@ public class JdbcInviteDao implements InviteDao{
 
     @Override
     public Invite getInviteByInviteId(int inviteId) throws Exception {
-            String sql = "SELECT * FROM invite WHERE invite_id = ?";
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
-            if (results.next()) {
-                return mapRowToInvite(results);
-            } else {
-                throw new Exception("inviteId " + inviteId + " was not found.");
-            }
+        String sql = "SELECT * FROM invite WHERE invite_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
+        if (results.next()) {
+            return mapRowToInvite(results);
+        } else {
+            throw new Exception("inviteId " + inviteId + " was not found.");
         }
+    }
 
     @Override
     public List<Invite> findAllSentInvitesByUserId(int userId) throws Exception {
         List<Invite> invites = new ArrayList<>();
         String sql = "SELECT invite_id, sender_id, appointment, place_ids FROM invite WHERE sender_id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-        while(results.next()) {
+        while (results.next()) {
             Invite invite = mapRowToInvite(results);
             invites.add(invite);
         }
-        if (invites.size()==0){
-            throw new Exception("Invalid user id : "+ userId);
+        if (invites.size() == 0) {
+            throw new Exception("Invalid user id : " + userId);
         }
         return invites;
     }
@@ -93,6 +101,5 @@ public class JdbcInviteDao implements InviteDao{
         invite.setPlaceIds(rs.getString("place_ids"));
         return invite;
     }
-
 
 }
