@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Button, Alert, Form, FormGroup, Label, Input, Col, FormFeedback } from 'reactstrap';
+import { Alert, Form, FormGroup, Input, FormFeedback } from 'reactstrap';
 
 
 class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            username: '',
             email: '',
             password: '',
             confirmpassword: '',
@@ -26,16 +27,14 @@ class Register extends Component {
         });
     }
     handleSubmit(event) {
-//        console.log("Current State is:" + JSON.stringify(this.state));
-//        alert("Current State is:" + JSON.stringify(this.state));
         const postData ={
             email: this.state.email,
             password: this.state.password,
-            username: this.state.email,
+            username: this.state.username,
             lastName: 'lastName',
             firstName: 'firstName',
             confirmPassword:  this.state.confirmpassword,
-            role: 'ROLE_USER'
+            role: 'USER'
         }
         //POST request
         fetch('http://localhost:8081/register', {
@@ -47,12 +46,12 @@ class Register extends Component {
         })
 
         .then((response) => {
-            if(response.status == 200){
+            if(response.status === 201){
                  this.setState({
-                 globalMessage:'User is created',
+                 globalMessage:'Account successfully created, you can now log in',
                  userAlreadyExit: false
                  });
-            } else if(response.status == 500){
+            } else if(response.status === 500){
                this.setState({
                    globalMessage: 'Username/email already exists',
                    userAlreadyExit: true
@@ -76,11 +75,12 @@ class Register extends Component {
     }
     validate(email, password, confirmpassword) {
         const errors = {
+            username: '',
             email: '',
             password: '',
             confirmpassword: ''
-        };
-          if (this.state.email && email.split('').filter(x => x === '@').length !== 1)
+        };  
+        if (this.state.email && email.split('').filter(x => x === '@').length !== 1)
           errors.email = 'Email should contain a @';
         if (this.state.password && password.length < 8)
             errors.password = 'Password should be more than 8 characters';
@@ -103,6 +103,16 @@ class Register extends Component {
                   {!this.state.userAlreadyExit && this.state.globalMessage && this.state.globalMessage.length > 0 &&<Alert color="primary">{this.state.globalMessage}</Alert>}
                   {this.state.userAlreadyExit &&  this.state.globalMessage && this.state.globalMessage.length > 0 &&<Alert color="danger">{this.state.globalMessage}</Alert>}
                 <FormGroup>
+                    <Input type="text" id="username" name="username"
+                        placeholder="Username"
+                        value={this.state.username}
+                        valid={errors.username === ''}
+                        invalid={errors.username !== ''}
+                        onBlur={this.handleBlur('username')}
+                        onChange={this.handleInputChange} />
+                    <FormFeedback>{errors.username}</FormFeedback>
+                </FormGroup>
+                    <FormGroup>
                     <Input type="email" id="email" name="email"
                         placeholder="Email"
                         value={this.state.email}
@@ -133,7 +143,7 @@ class Register extends Component {
                     <FormFeedback>{errors.confirmpassword}</FormFeedback>
                 </FormGroup>
                   <Link to="/login">Have an account?</Link>
-                                <button type="submit" onClick={this.handleSubmit}>Sign in</button>
+                                <button type="submit" onClick={this.handleSubmit}>Register</button>
 
             </Form>
             </div>
