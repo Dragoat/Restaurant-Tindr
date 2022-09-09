@@ -13,7 +13,7 @@ const apiData = {
                 id: business.id,
                 imageSrc: business.image_url,
                 name: business.name,
-                isClosed: business.is_closed, //not displaying anything
+                isClosed: business.is_closed, //not displaying anything yet
                 address: business.location.address1,
                 city: business.location.city,
                 state: business.location.state,
