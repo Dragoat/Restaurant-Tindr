@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 public class InviteList {
     private int inviteId;
-    private int inviteeId;
+    private int recipientId;
 
     public int getInviteId() {
         return inviteId;
@@ -12,12 +12,12 @@ public class InviteList {
         this.inviteId = inviteId;
     }
 
-    public int getInviteeId() {
-        return inviteeId;
+    public int getRecipientId() {
+        return recipientId;
     }
 
-    public void setInviteeId(int inviteeId) {
-        this.inviteeId = inviteeId;
+    public void setRecipientId(int inviteeId) {
+        this.recipientId = inviteeId;
     }
 
     public InviteList() { }
@@ -27,14 +27,14 @@ public class InviteList {
         //need to look at that thing that generates id in a serialized way
 
         this.inviteId = inviteId;
-        this.inviteeId = inviteeId;
+        this.recipientId = inviteeId;
     }
 
     @Override
     public String toString() {
-        return "Invite{" +
-                "transfer_id=" + inviteId +
-                ", transfer_type_id=" + inviteeId +
+        return "InviteList{" +
+                "invite_id=" + inviteId +
+                ", recipient_id=" + recipientId +
                 '}';
     }
 

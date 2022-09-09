@@ -8,9 +8,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import java.beans.Statement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +22,7 @@ public class JdbcInviteListDao implements InviteListDao{
 
 
     public void createInviteList(int invite_id, int recipient_id){
-            String sql = "INSERT INTO invite_list (invite_id,recipient_id)  VALUES (?,?)";
+            String sql = "INSERT INTO invite_list (invite_id, invitee_id)  VALUES (?,?);";
             jdbcTemplate.update(sql, invite_id,recipient_id);
         }
 
@@ -37,13 +34,42 @@ public class JdbcInviteListDao implements InviteListDao{
     }
 
     @Override
-    public List<InviteList> getInviteListByRecipeintId(int recipient_id) {
-        return null;
+    public List<InviteList> getInviteListByRecipientId(int recipient_id) throws Exception {
+
+        List<InviteList> invites = new ArrayList<>();
+        String sql = "SELECT invite_id, invitee_id FROM invite_list WHERE invitee_id = ? ;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, recipient_id);
+        while (results.next()) {
+            InviteList inviteList = mapRowToInviteList(results);
+            invites.add(inviteList);
+        }
+        if (invites.size() == 0) {
+            throw new Exception("Invalid user id : " + recipient_id);
+        }
+        return invites;
     }
 
+
     @Override
-    public List<InviteList> getAllRecipientsByInviteId(int invite_id) {
-        return null;
+    public List<InviteList> getAllRecipientsByInviteId(int invite_id) throws Exception {
+        List<InviteList> invites = new ArrayList<>();
+        String sql = "SELECT invite_id, invitee_id FROM invite_list WHERE invite_id = ? ;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, invite_id);
+        while (results.next()) {
+            InviteList inviteList = mapRowToInviteList(results);
+            invites.add(inviteList);
+        }
+        if (invites.size() == 0) {
+            throw new Exception("Invalid user id : " + invite_id);
+        }
+        return invites;
+    }
+
+    private InviteList mapRowToInviteList(SqlRowSet rs) {
+        InviteList invitelist = new InviteList();
+        invitelist.setInviteId(rs.getInt("invite_id"));
+        invitelist.setRecipientId(rs.getInt("invitee_id"));
+        return invitelist;
     }
 
 }
