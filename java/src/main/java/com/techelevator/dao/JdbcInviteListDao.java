@@ -25,7 +25,7 @@ public class JdbcInviteListDao implements InviteListDao{
     public void createInviteList(InviteList inviteList){
             String sql = "INSERT INTO invite_list (invite_id, invitee_id)  VALUES (?,?);";
        jdbcTemplate.update(con -> {
-            PreparedStatement statement = con.prepareStatement(sql, new String[]{2});
+            PreparedStatement statement = con.prepareStatement(sql, new int[]{});
            statement.setInt(1, inviteList.getInviteId());
            statement.setInt(2, inviteList.getRecipientId());
 
