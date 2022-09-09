@@ -11,7 +11,7 @@ public interface InviteListDao {
     List<InviteList> getInviteListByRecipientId(int recipient_id) throws Exception;
     List<InviteList> getAllRecipientsByInviteId(int inviteId) throws Exception;
 
-    void createInviteList(int invite_id, int recipient_id);
+    void createInviteList(InviteList inviteList);
 
     void deleteInviteListByInviteId(int invite_id);
 }

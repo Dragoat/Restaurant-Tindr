@@ -8,6 +8,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +22,16 @@ public class JdbcInviteListDao implements InviteListDao{
     }
 
 
-    public void createInviteList(int invite_id, int recipient_id){
+    public void createInviteList(InviteList inviteList){
             String sql = "INSERT INTO invite_list (invite_id, invitee_id)  VALUES (?,?);";
-            jdbcTemplate.update(sql, invite_id,recipient_id);
+       jdbcTemplate.update(con -> {
+            PreparedStatement statement = con.prepareStatement(sql, new String[]{2});
+           statement.setInt(1, inviteList.getInviteId());
+           statement.setInt(2, inviteList.getRecipientId());
+
+           return statement;
+       });
+            jdbcTemplate.update(sql, inviteList.getInviteId(),inviteList.getRecipientId());
         }
 
     @Override

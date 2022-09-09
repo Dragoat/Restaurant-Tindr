@@ -34,8 +34,8 @@ import java.util.List;
         }
 
         @PostMapping(value = "")
-        public void createInviteList(@RequestBody int invite_id, int recipient_id) {
-            inviteListDao.createInviteList( invite_id, recipient_id);
+        public void createInviteList(InviteList inviteList) {
+            inviteListDao.createInviteList(inviteList);
         }
 
         @DeleteMapping(value = "invite/invite_id")

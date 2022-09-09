@@ -42,11 +42,6 @@ public class JdbcInviteDao implements InviteDao {
 
         System.out.println(inviteCreated);
         return inviteCreated;
-        // the database auto increments the inviteId and the sql syntax does create a
-        // new invite when posted in pgAdmin
-        // but im still trying to figure out why it doesnt work here somthing about the
-        // request is wrong.
-        // last night it seemed like the jason wasnt passing in but not sure
     }
 
     @Override
