@@ -23,6 +23,7 @@ function Business (props) {
   const [saturdayEnd, setSaturdayEnd] = useState('');
   const [sundayStart, setSundayStart] = useState('');
   const [sundayEnd, setSundayEnd] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
 
   const handleClick = async() => {
@@ -33,7 +34,7 @@ function Business (props) {
     }
     }).then(res => {
     console.log(res.data)
-
+    setIsOpen(res.data.hours[0].is_open_now);
     if(!res.data.hours){
     } else {
       if(res.data.hours[0].open[0]) {
@@ -130,8 +131,6 @@ function Business (props) {
     })
   }
 
-
-
   function changeTime(time) {
     const hours = time.slice(0, 2);
     const minutes = time.slice(-2);
@@ -149,7 +148,7 @@ function Business (props) {
         {showComponent ? <BusinessInfo monStart={mondayStart} monClose={mondayEnd} 
         tuesStart={tuesdayStart} tuesClose={tuesdayEnd} wedStart={wednesdayStart} wedClose={wesnesdayEnd} 
         thursStart={thursdayStart} thursClose={thursdayEnd} friStart={fridayStart} friClose={fridayEnd} 
-        satStart={saturdayStart} satClose={saturdayEnd} sunStart={sundayStart} sunClose={sundayEnd}/> : null} 
+        satStart={saturdayStart} satClose={saturdayEnd} sunStart={sundayStart} sunClose={sundayEnd} isOpen={isOpen}/> : null} 
         <p>{props.business.transactions[0]} {props.business.transactions[1]} {props.business.transactions[2]}</p>
         <p>{props.business.isClosed}</p>
         <a href = {`https://maps.google.com/?q=${props.business.latitude},${props.business.longitude}`}>View on Google Maps</a>
