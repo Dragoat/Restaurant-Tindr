@@ -34,7 +34,9 @@ function Business (props) {
     }
     }).then(res => {
     console.log(res.data)
+    if(res.data.hours) {
     setIsOpen(res.data.hours[0].is_open_now);
+    }
     if(!res.data.hours){
     } else {
       if(res.data.hours[0].open[0]) {
