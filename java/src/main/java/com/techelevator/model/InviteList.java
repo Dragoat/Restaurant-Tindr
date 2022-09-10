@@ -1,8 +1,11 @@
 package com.techelevator.model;
 
+import java.util.Map;
+
 public class InviteList {
     private int inviteId;
     private int recipientId;
+    private String placeReplies;
 
     public int getInviteId() {
         return inviteId;
@@ -22,19 +25,26 @@ public class InviteList {
 
     public InviteList() { }
 
-    public InviteList(int inviteId, int inviteeId) {
+    public String getPlaceReplies() {
+        return placeReplies;
+    }
 
-        //need to look at that thing that generates id in a serialized way
+    public void setPlaceReplies(String placeReplies) {
+        this.placeReplies = placeReplies;
+    }
 
+    public InviteList(int inviteId, int inviteeId, String placeReplies){
         this.inviteId = inviteId;
         this.recipientId = inviteeId;
+        this.placeReplies = placeReplies;
     }
 
     @Override
     public String toString() {
         return "InviteList{" +
                 "invite_id=" + inviteId +
-                ", recipient_id=" + recipientId +
+                ", invitee_id=" + recipientId +
+                ", place_replies=" + placeReplies +
                 '}';
     }
 
