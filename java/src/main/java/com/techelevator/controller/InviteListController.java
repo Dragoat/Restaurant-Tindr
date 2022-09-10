@@ -27,10 +27,10 @@ import java.util.List;
             return inviteList;
         }
 
-        @GetMapping(value = "recipient/{recipient_id}")
-        public List<InviteList> getInviteById(@PathVariable int recipient_id) throws Exception {
+        @GetMapping(value = "invitee/{invitee_id}")
+        public List<InviteList> getInviteById(@PathVariable int invitee_id) throws Exception {
             List<Invite> inviteList = null;
-            return inviteListDao.getInviteListByRecipientId(recipient_id);
+            return inviteListDao.getInviteListByRecipientId(invitee_id);
         }
 
         @PostMapping(value = "")
