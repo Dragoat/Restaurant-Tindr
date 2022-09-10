@@ -1,14 +1,17 @@
 .business {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 25rem;
+    justify-content: space-evenly;
+    width: 35rem;
     margin-top: 10px;
     border: 1px solid black;
+    align-items: center;
 }
 
 .business-image {
     width: 18rem;
     height: 10rem;
 }
+
+
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import './searchbar.css'
 
 class SearchBar extends React.Component {
     
@@ -30,11 +31,19 @@ class SearchBar extends React.Component {
 
   render() {
     return (
+      <>
+      
+      <div className='searchbar'>
       <div>
-          <input placeholder="food type" onChange={this.handleTermChange} />
+      <h3>Search for Restaurants</h3>
+      </div>
+      <div>
+          <input placeholder="type of food" onChange={this.handleTermChange} />
           <input placeholder="location" onChange={this.handleLocationChange}/>
           <button onClick={this.handleSearch}>Search</button>
+          </div>
       </div>
+      </>
     );
   }
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import apiData from '../../api';
 import SearchBar from '../SearchBar/SearchBar';
 import BusinessList from '../BusinessList/BusinessList';
+import './home.css';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   constructor(props) {
@@ -23,7 +25,11 @@ class Home extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>🦖</h1>
+        <div className='button'>
+        <Link to='/invite'>
+        <button>Create an invitation</button>
+        </Link>
+        </div>
         <SearchBar searchYelp={this.searchData} />
         <BusinessList businesses={this.state.businesses} />
       </div>

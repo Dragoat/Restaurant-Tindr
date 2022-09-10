@@ -1,11 +1,13 @@
 import React from 'react';
 import Business from '../Business/Business';
+import './businesslist.css'
 
 class BusinessList extends React.Component {
 
 
   render() {
     return (
+      <div className='list'>
       <div className='business'>
         {
           (this.props.businesses && this.props.businesses.map(business => {
@@ -13,7 +15,7 @@ class BusinessList extends React.Component {
             <Business business={business} key={business.id} /> 
           )}))
         }
-        
+      </div>
       </div>
     );
   }

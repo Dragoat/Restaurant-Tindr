@@ -145,7 +145,7 @@ function Business (props) {
       <div className="business">
         <img src={props.business.imageSrc} alt='' className='business-image'/>
         <h2>{props.business.name}</h2>
-        <p>{props.business.id}</p>
+        {/* <p>{props.business.id}</p> */}
         <button onClick={handleClick}>View More Details</button>
         {showComponent ? <BusinessInfo monStart={mondayStart} monClose={mondayEnd} 
         tuesStart={tuesdayStart} tuesClose={tuesdayEnd} wedStart={wednesdayStart} wedClose={wesnesdayEnd} 
