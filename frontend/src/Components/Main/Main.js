@@ -5,7 +5,9 @@ import Register from '../Register/Register'
 import Home from '../Home/Home'
 import {addToken, deleteUser} from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import Header from '../Header/Header'
+import { Navbar, Nav, Container } from 'react-bootstrap'
 import Invite from '../Invite/Invite'
 
 const mapStateToProps = state => {
@@ -35,18 +37,26 @@ class Main extends Component {
             <div>
                 {this.props.token.token !== undefined ?
                         <div>
-                            <Link to='/home'>Home | </Link>
-                            <Link to='/login' onClick={this.handleLogout}>Logout</Link> 
-                            <Redirect to='/home'/>
-
+                            <Navbar collapseOnSelect fixed='static-top' expand='sm' bg='dark' variant='dark'>
+                                <Container>
+                                    <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+                                    <Navbar.Collapse id='responsive-navbar-nav'>
+                                        <Nav>
+                                            <Nav.Link to='/home'>Home</Nav.Link>
+                                            <Nav.Link as={Link} to='/login' onClick={this.handleLogout}>logout</Nav.Link> 
+                                            <Redirect to='/home'/>
+                                        </Nav>
+                                    </Navbar.Collapse>
+                                </Container>
+                            </Navbar>
                         </div>  
                     : 
-                        <Link to='/login'>Home | </Link>
+                        <Header />
                 }
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
-                    <Route path ='/invite' component={() => <Invite />}/>
+                     <Route path ='/invite' component={() => <Invite />}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                 </Switch>
             </div>

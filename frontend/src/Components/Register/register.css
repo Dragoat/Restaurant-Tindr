@@ -1,0 +1,53 @@
+.login-form {
+    height: 100vh;
+    width: 330px;
+    max-width: 330px;
+    padding: 15px;
+    /* margin: 100px; */
+    /* margin-top: 50px; */
+    
+    border: 1px rgb(18, 1, 1);
+    background-color:#c9ecfd8a;
+    border-radius: 5px;
+    
+
+}
+
+#register {
+    background-image: url("regiser.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        ". ."
+        ". .";
+        
+}
+.text-center{
+    margin-top: 70px;
+}
+.signup{
+    color: rgb(0, 0, 0);
+    background-color:rgb(0, 255, 225);
+    border-radius: 5px;
+    font-family:Helvetica, sans-serif;
+    margin-top: 70px;
+    margin-left:80px;
+    padding-left: 30px;
+    padding-right: 30px;
+  
+}
+.signup:hover {
+    color: white;
+    background-color: black;
+box-shadow: 3px 3px 1px 1px rgba(16, 16, 19, 0.2);
+
+}
+span{
+    font-weight: bold;
+    text-decoration: underline;
+}

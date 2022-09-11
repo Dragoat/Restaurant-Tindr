@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Alert, Form, FormGroup, Input, FormFeedback } from 'reactstrap';
-
+import '../../Components/Register/register.css';
 
 class Register extends Component {
     constructor(props) {
@@ -97,9 +97,15 @@ class Register extends Component {
     render() {
         const errors = this.validate(this.state.email, this.state.password, this.state.confirmpassword);
         return (
-            <div>
+         <div id='register'>
             <Form onSubmit={this.handleSubmit} className="login-form">
-                <h2>Create Account</h2>
+                
+                    <h2 className="text-center"><b>New account?</b></h2>
+                    <br />
+                    <div className = "signup--easy"> <p><b>Sign up</b></p>
+                        <p><b>It is quick and easy</b></p>
+                    </div>
+                   
                   {!this.state.userAlreadyExit && this.state.globalMessage && this.state.globalMessage.length > 0 &&<Alert color="primary">{this.state.globalMessage}</Alert>}
                   {this.state.userAlreadyExit &&  this.state.globalMessage && this.state.globalMessage.length > 0 &&<Alert color="danger">{this.state.globalMessage}</Alert>}
                 <FormGroup>
@@ -141,10 +147,16 @@ class Register extends Component {
                         onBlur={this.handleBlur('confirmpassword')}
                         onChange={this.handleInputChange} />
                     <FormFeedback>{errors.confirmpassword}</FormFeedback>
-                </FormGroup>
-                  <Link to="/login">Have an account?</Link>
-                                <button type="submit" onClick={this.handleSubmit}>Register</button>
+                    </FormGroup>
+                
+                    <Link to="/login">Have an account?</Link>
+                    <br/>
+                    <br />
+                <p>By continuing, you agree to Restaurant Tinder <span>Terms of Service, and Privacy Policy.</span></p>
+                    <button Button className="signup" type="submit" onClick={this.handleSubmit}>Sign Up</button>
 
+                  
+                                
             </Form>
             </div>
         );
