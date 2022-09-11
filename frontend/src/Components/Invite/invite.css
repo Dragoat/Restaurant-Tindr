@@ -1,0 +1,55 @@
+  
+  .wrapper {
+    background-color: white;
+    width: 400px;
+    padding: 2rem;
+    box-shadow: 0 1.5rem 1rem -1rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.3rem;
+    display: flex;
+    
+  }
+
+  .input {
+    display: flex;
+    
+  }
+  
+
+  .input.has-error {
+    border-color: tomato;
+  }
+  
+  .error {
+    margin: 0;
+    font-size: 90%;
+    color: tomato;
+  }
+  
+  .tag-item {
+    position:relative;
+    background-color: #d4d5d6;
+    font-size: 14px;
+    border-radius: 30px;
+    height: 30px;
+    padding: 0 4px 0 1rem;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0.3rem 0.3rem 0;
+  }
+  
+  .tag-item > .button {
+    background-color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+    padding: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
