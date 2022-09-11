@@ -1,5 +1,6 @@
 import React from "react";
 import "./invite.css";
+import TimeDate from './TimeDate'
 
 
 class Invite extends React.Component {
@@ -111,11 +112,12 @@ class Invite extends React.Component {
             onKeyDown={this.handleKeyDown}
             onChange={this.handleEmailChange}
             />
-            {this.state.error && <p className="error">{this.state.error}</p>}
+                    {this.state.error && <p className="error">{this.state.error}</p>}
+                   
             </div>
 
-         
-            
+           <TimeDate />
+           
         </form>
         );
     }
