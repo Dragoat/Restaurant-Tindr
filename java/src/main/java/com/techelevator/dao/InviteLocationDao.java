@@ -10,9 +10,9 @@ public interface InviteLocationDao {
 
     void updateInviteLocation(InviteLocation inviteLocation);
 
-    void deleteInviteLocation(int placeId,int inviteId);
+    void deleteInviteLocation(String placeId,int inviteId);
 
-    InviteLocation getOneLocationAssociatedWithInviteId(int placeId,int inviteId) throws Exception;
+    InviteLocation getOneLocationAssociatedWithInviteId(String placeId,int inviteId) throws Exception;
 
     List<InviteLocation> findLocationsAssociatedWithInviteId(int inviteId) throws Exception;
 }

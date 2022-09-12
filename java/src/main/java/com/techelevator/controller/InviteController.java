@@ -38,8 +38,8 @@ public class InviteController {
         inviteDao.updateInvite(invite);
     }
 
-    @DeleteMapping(value = "/")
-    public void deleteInvite(@RequestBody int invite_id) {
+    @DeleteMapping(value = "/{invite_id}")
+    public void deleteInvite(@PathVariable int invite_id) {
         inviteDao.deleteInvite(invite_id);
     }
 

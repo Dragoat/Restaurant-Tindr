@@ -41,7 +41,7 @@ public class JdbcInviteListDao implements InviteListDao{
     public List<InviteList> getInviteListByRecipientId(int recipient_id) throws Exception {
 
         List<InviteList> invites = new ArrayList<>();
-        String sql = "SELECT invite_id, recipient_id, place_replies  FROM invite_list WHERE recipient_id = ? ;";
+        String sql = "SELECT invite_id, recipient_id FROM invite_list WHERE recipient_id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, recipient_id);
         while (results.next()) {
             InviteList inviteList = mapRowToInviteList(results);
@@ -75,5 +75,10 @@ public class JdbcInviteListDao implements InviteListDao{
         invitelist.setRecipientId(rs.getInt("recipient_id"));
         return invitelist;
     }
+
+    //select invites.invite_id, recipient_id, username, email, sender_id, appointment, place_id, no_vote, yes_vote from invite_list
+    //left join users on invite_list.recipient_id = users.user_id
+    //left join invites on invite_list.invite_id = invites.invite_id
+    //left join invite_location on invites.invite_id = invite_location.invite_id
 
 }

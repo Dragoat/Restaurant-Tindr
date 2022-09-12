@@ -37,7 +37,7 @@ import java.util.List;
             inviteListDao.createInviteList(inviteList);
         }
 
-        @DeleteMapping(value = "invite/invite_id")
+        @DeleteMapping(value = "invite/{invite_id}")
         public void deleteInvite(@PathVariable int invite_id) {
             inviteListDao.deleteInviteListByInviteId(invite_id);
         }

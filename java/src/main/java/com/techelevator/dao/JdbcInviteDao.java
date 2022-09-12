@@ -25,7 +25,7 @@ public class JdbcInviteDao implements InviteDao {
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "invite_id";
 
-        String createNewInvite = "INSERT INTO invite (sender_id, appointment, place_ids)  VALUES (?,?,?) RETURNING invite_id;";
+        String createNewInvite = "INSERT INTO invites (sender_id, appointment, place_ids)  VALUES (?,?,?) RETURNING invite_id;";
 
         inviteCreated = jdbcTemplate.update(con -> {
             PreparedStatement statement = con.prepareStatement(createNewInvite, new String[] { id_column });
@@ -42,20 +42,20 @@ public class JdbcInviteDao implements InviteDao {
 
     @Override
     public void updateInvite(Invite invite) {
-        String sql = "Set (sender_id, appointment, place_ids)  VALUES (?,?,?) WHERE invite_id = ?";
+        String sql = "update invites Set (sender_id, appointment, place_ids)  VALUES (?,?,?) WHERE invite_id = ?";
         jdbcTemplate.update(sql, invite.getSenderId(), invite.getAppointment(), invite.getInviteId());
     }
 
     @Override
     public void deleteInvite(int inviteId) {
-        String sql = "DELETE FROM invite WHERE invite_id = ?";
+        String sql = "DELETE FROM invites WHERE invite_id = ?";
         jdbcTemplate.update(sql, inviteId);
         System.out.println("Invite Deleted");
     }
 
     @Override
     public Invite getInviteByInviteId(int inviteId) throws Exception {
-        String sql = "SELECT * FROM invite WHERE invite_id = ?";
+        String sql = "SELECT * FROM invites WHERE invite_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
         if (results.next()) {
             return mapRowToInvite(results);
@@ -67,7 +67,7 @@ public class JdbcInviteDao implements InviteDao {
     @Override
     public List<Invite> findAllSentInvitesByUserId(int senderId) throws Exception {
         List<Invite> invites = new ArrayList<>();
-        String sql = "SELECT invite_id, sender_id, appointment, place_ids FROM invite WHERE sender_id = ? ;";
+        String sql = "SELECT invite_id, sender_id, appointment FROM invites WHERE sender_id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, senderId);
         while (results.next()) {
             Invite invite = mapRowToInvite(results);
