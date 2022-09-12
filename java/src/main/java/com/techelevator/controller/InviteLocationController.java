@@ -1,9 +1,6 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.InviteListDao;
 import com.techelevator.dao.InviteLocationDao;
-import com.techelevator.model.Invite;
-import com.techelevator.model.InviteList;
 import com.techelevator.model.InviteLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,7 +17,7 @@ public class InviteLocationController {
     private InviteLocationDao inviteLocationDao;
 
     @PostMapping(value = "")
-    public void createInviteLocation(InviteLocation inviteLocation) {
+    public void createInviteLocation(@RequestBody InviteLocation inviteLocation) {
         inviteLocationDao.createInviteLocation(inviteLocation);
     }
 

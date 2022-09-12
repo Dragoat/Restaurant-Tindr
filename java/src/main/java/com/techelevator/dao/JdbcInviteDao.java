@@ -42,7 +42,7 @@ public class JdbcInviteDao implements InviteDao {
 
     @Override
     public void updateInvite(Invite invite) {
-        String sql = "update invites Set (sender_id, appointment, place_ids)  VALUES (?,?,?) WHERE invite_id = ?";
+        String sql = "update invites Set (sender_id, appointment)  VALUES (?,?) WHERE invite_id = ?";
         jdbcTemplate.update(sql, invite.getSenderId(), invite.getAppointment(), invite.getInviteId());
     }
 
