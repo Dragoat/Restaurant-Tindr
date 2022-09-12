@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface InviteLocationDao {
 
-    boolean createInviteLocation(InviteLocation inviteLocation);
+    void createInviteLocation(InviteLocation inviteLocation);
 
     void updateInviteLocation(InviteLocation inviteLocation);
 

@@ -18,8 +18,11 @@ public class JdbcInviteLocationDao implements InviteLocationDao{
     }
 
     @Override
-    public boolean createInviteLocation(InviteLocation inviteLocation) {
-        return false;
+    public void createInviteLocation(InviteLocation inviteLocation) {
+        boolean created;
+        String sql = "INSERT INTO invite_location (invite_id, place_id, no_vote, yes_vote) VALUES (?, ?, ?, ?);";
+        jdbcTemplate.update(sql, inviteLocation.getInviteId(), inviteLocation.getPlaceId(),inviteLocation.getNoVote(),inviteLocation.getYesVote());
+
     }
 
     @Override
