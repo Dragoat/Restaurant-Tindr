@@ -1,10 +1,6 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Invite;
-import com.techelevator.model.User;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.List;
 
 import java.util.List;
 
@@ -18,8 +14,8 @@ public interface InviteDao {
 
     Invite getInviteByInviteId(int inviteId) throws Exception;
 
-    List<Invite> findAllSentInvitesByUserId(int userId) throws Exception;
+    List<Invite> findAllSentInvitesByUserId(int senderId) throws Exception;
 
-    List<Invite> findAllSentInvitesByUserIdLimitedByDate(int userId, String date);
+    List<Invite> findAllSentInvitesByUserIdLimitedByDate(int senderId, String appointment);
 
 }

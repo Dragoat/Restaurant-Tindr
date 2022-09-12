@@ -5,8 +5,8 @@ public class Invite {
 
     private int inviteId;
     private int senderId;
-    private String date;//I need an appropriate datatype
-    private String placeIds;//I need an appropriate datatype
+    private String appointment;
+
 
     public int getInviteId() {
         return inviteId;
@@ -24,38 +24,29 @@ public class Invite {
         this.senderId = senderId;
     }
 
-    public String getDate() {
-        return date;
+    public String getAppointment() {
+        return appointment;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setAppointment(String appointment) {
+        this.appointment = appointment;
     }
 
-    public String getPlaceIds() {
-        return placeIds;
-    }
-
-    public void setPlaceIds(String placeId) {
-        this.placeIds = placeId;
-    }
 
     public Invite() { }
 
-    public Invite( int senderId, String date,String placeIds) {
+    public Invite( int senderId, String appointment) {
 
         this.senderId = senderId;
-        this.date = date;
-        this. placeIds = placeIds;
+        this.appointment = appointment;
     }
 
     @Override
     public String toString() {
         return "Invite{" +
-                "transfer_id=" + inviteId +
-                ", transfer_type_id=" + senderId +
-                ", transfer_status_id=" + date +
-                ", account_from=" +placeIds +
+                "invite_id=" + inviteId +
+                ", sender_id=" + senderId +
+                ", transfer_status_id=" + appointment +
                 '}';
     }
 }

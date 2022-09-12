@@ -1,6 +1,5 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.InviteDao;
 import com.techelevator.dao.InviteListDao;
 import com.techelevator.model.Invite;
 import com.techelevator.model.InviteList;
@@ -27,10 +26,10 @@ import java.util.List;
             return inviteList;
         }
 
-        @GetMapping(value = "invitee/{invitee_id}")
-        public List<InviteList> getInviteById(@PathVariable int invitee_id) throws Exception {
+        @GetMapping(value = "invitee/{recipient_id}")
+        public List<InviteList> getInviteById(@PathVariable int recipient_id) throws Exception {
             List<Invite> inviteList = null;
-            return inviteListDao.getInviteListByRecipientId(invitee_id);
+            return inviteListDao.getInviteListByRecipientId(recipient_id);
         }
 
         @PostMapping(value = "")

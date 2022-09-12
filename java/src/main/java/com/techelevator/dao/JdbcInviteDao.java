@@ -1,14 +1,11 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Invite;
-import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import java.beans.Statement;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +30,7 @@ public class JdbcInviteDao implements InviteDao {
         inviteCreated = jdbcTemplate.update(con -> {
             PreparedStatement statement = con.prepareStatement(createNewInvite, new String[] { id_column });
             statement.setInt(1, invite.getSenderId());
-            statement.setString(2, invite.getDate());
-            statement.setString(3, invite.getPlaceIds());
+            statement.setString(2, invite.getAppointment());
             return statement;
         }, keyHolder) == 1;
 
@@ -47,7 +43,7 @@ public class JdbcInviteDao implements InviteDao {
     @Override
     public void updateInvite(Invite invite) {
         String sql = "Set (sender_id, appointment, place_ids)  VALUES (?,?,?) WHERE invite_id = ?";
-        jdbcTemplate.update(sql, invite.getSenderId(), invite.getDate(), invite.getPlaceIds(), invite.getInviteId());
+        jdbcTemplate.update(sql, invite.getSenderId(), invite.getAppointment(), invite.getInviteId());
     }
 
     @Override
@@ -69,22 +65,22 @@ public class JdbcInviteDao implements InviteDao {
     }
 
     @Override
-    public List<Invite> findAllSentInvitesByUserId(int userId) throws Exception {
+    public List<Invite> findAllSentInvitesByUserId(int senderId) throws Exception {
         List<Invite> invites = new ArrayList<>();
         String sql = "SELECT invite_id, sender_id, appointment, place_ids FROM invite WHERE sender_id = ? ;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, senderId);
         while (results.next()) {
             Invite invite = mapRowToInvite(results);
             invites.add(invite);
         }
         if (invites.size() == 0) {
-            throw new Exception("Invalid user id : " + userId);
+            throw new Exception("Invalid user id : " + senderId);
         }
         return invites;
     }
 
     @Override
-    public List<Invite> findAllSentInvitesByUserIdLimitedByDate(int userId, String date) {
+    public List<Invite> findAllSentInvitesByUserIdLimitedByDate(int userId, String appointment) {
         return null;
     }
 
@@ -92,8 +88,7 @@ public class JdbcInviteDao implements InviteDao {
         Invite invite = new Invite();
         invite.setInviteId(rs.getInt("invite_id"));
         invite.setSenderId(rs.getInt("sender_id"));
-        invite.setDate(rs.getString("appointment"));
-        invite.setPlaceIds(rs.getString("place_ids"));
+        invite.setAppointment(rs.getString("appointment"));
         return invite;
     }
 
