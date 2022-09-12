@@ -33,7 +33,7 @@ import java.util.List;
         }
 
         @PostMapping(value = "")
-        public void createInviteList(InviteList inviteList) {
+        public void createInviteList(@RequestBody InviteList inviteList) {
             inviteListDao.createInviteList(inviteList);
         }
 

@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -20,12 +22,12 @@ public class JdbcInviteDao implements InviteDao {
     }
 
     @Override
-    public boolean createInvite(Invite invite) {
+    public boolean createInvite(@RequestBody Invite invite) {
         boolean inviteCreated = false;
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "invite_id";
 
-        String createNewInvite = "INSERT INTO invites (sender_id, appointment, place_ids)  VALUES (?,?,?) RETURNING invite_id;";
+        String createNewInvite = "INSERT INTO invites (sender_id, appointment)  VALUES (?,?) RETURNING invite_id;";
 
         inviteCreated = jdbcTemplate.update(con -> {
             PreparedStatement statement = con.prepareStatement(createNewInvite, new String[] { id_column });
@@ -41,20 +43,20 @@ public class JdbcInviteDao implements InviteDao {
     }
 
     @Override
-    public void updateInvite(Invite invite) {
+    public void updateInvite(@RequestBody Invite invite) {
         String sql = "update invites Set (sender_id, appointment)  VALUES (?,?) WHERE invite_id = ?";
         jdbcTemplate.update(sql, invite.getSenderId(), invite.getAppointment(), invite.getInviteId());
     }
 
     @Override
-    public void deleteInvite(int inviteId) {
+    public void deleteInvite( @PathVariable int inviteId) {
         String sql = "DELETE FROM invites WHERE invite_id = ?";
         jdbcTemplate.update(sql, inviteId);
         System.out.println("Invite Deleted");
     }
 
     @Override
-    public Invite getInviteByInviteId(int inviteId) throws Exception {
+    public Invite getInviteByInviteId(@PathVariable int inviteId) throws Exception {
         String sql = "SELECT * FROM invites WHERE invite_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
         if (results.next()) {
@@ -65,7 +67,7 @@ public class JdbcInviteDao implements InviteDao {
     }
 
     @Override
-    public List<Invite> findAllSentInvitesByUserId(int senderId) throws Exception {
+    public List<Invite> findAllSentInvitesByUserId(@PathVariable int senderId) throws Exception {
         List<Invite> invites = new ArrayList<>();
         String sql = "SELECT invite_id, sender_id, appointment FROM invites WHERE sender_id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, senderId);
@@ -80,7 +82,7 @@ public class JdbcInviteDao implements InviteDao {
     }
 
     @Override
-    public List<Invite> findAllSentInvitesByUserIdLimitedByDate(int userId, String appointment) {
+    public List<Invite> findAllSentInvitesByUserIdLimitedByDate(@PathVariable int userId, @PathVariable String appointment) {
         return null;
     }
 

@@ -4,6 +4,8 @@ import com.techelevator.model.InviteList;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class JdbcInviteListDao implements InviteListDao{
     }
 
 
-    public void createInviteList(InviteList inviteList){
+    public void createInviteList(@RequestBody InviteList inviteList){
             String sql = "INSERT INTO invite_list (invite_id, recipient_id)  VALUES (?,?);";
        jdbcTemplate.update(con -> {
             PreparedStatement statement = con.prepareStatement(sql, new int[]{});
@@ -31,14 +33,14 @@ public class JdbcInviteListDao implements InviteListDao{
         }
 
     @Override
-    public void deleteInviteListByInviteId(int invite_id) {
+    public void deleteInviteListByInviteId(@PathVariable int invite_id) {
         String sql = "DELETE FROM invite_list WHERE invite_id = ?";
         jdbcTemplate.update(sql, invite_id);
         System.out.println("Invite Deleted");
     }
 
     @Override
-    public List<InviteList> getInviteListByRecipientId(int recipient_id) throws Exception {
+    public List<InviteList> getInviteListByRecipientId(@PathVariable int recipient_id) throws Exception {
 
         List<InviteList> invites = new ArrayList<>();
         String sql = "SELECT invite_id, recipient_id FROM invite_list WHERE recipient_id = ? ;";
@@ -55,7 +57,7 @@ public class JdbcInviteListDao implements InviteListDao{
 
 
     @Override
-    public List<InviteList> getAllRecipientsByInviteId(int invite_id) throws Exception {
+    public List<InviteList> getAllRecipientsByInviteId(@PathVariable int invite_id) throws Exception {
         List<InviteList> invites = new ArrayList<>();
         String sql = "SELECT invite_id, recipient_id FROM invite_list WHERE invite_id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, invite_id);
