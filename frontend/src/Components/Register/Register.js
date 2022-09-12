@@ -102,7 +102,7 @@ class Register extends Component {
                 
                     <h2 className="text-center"><b>New account?</b></h2>
                     <br />
-                    <div className = "signup--easy"> <p><b>Sign up</b></p>
+                    <div className = "signup--easy"> <p><b>Sign up!</b></p>
                         <p><b>It is quick and easy</b></p>
                     </div>
                    
