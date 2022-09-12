@@ -21,3 +21,79 @@
     width: 40px;
     
 }
+ .facebook {
+    border-radius: 6px;
+   background-color:#0b4bcb1e;
+      color: black;
+      margin-left: 26px;
+      border: none;
+   }
+    
+ 
+  .google {
+     border-radius: 6px;
+     background-color:#0b4bcb1e;
+     color:black;
+   margin-left: 26px;
+   padding-right:24px;
+   border: none;
+  
+  }
+  .facebook:hover,.google:hover {
+color: white;
+   background-color: rgb(63, 159, 238);
+   box-shadow: 3px 3px 1px 1px rgba(16, 16, 19, 0.2);
+  }
+  .facebook-img{
+   width: 30px;
+margin-right: 10px;
+   
+  }
+       .google-img {
+          width: 30px;
+         margin-right: 10px;
+       }
+#OR{
+   text-align: center;
+   
+}
+#h1-space{
+      text-align: center;
+   
+      }
+      .sign-in{
+border-radius: 6px;
+   background-color: white;
+   color: black;
+   font-family: Helvetica, sans-serif;
+      margin-top: 30px;
+      margin-left: 95px;
+      padding-left: 30px;
+      padding-right: 30px;
+   
+   }
+.sign-in:hover {
+   color: white;
+   background-color: black;
+   box-shadow: 3px 3px 1px 1px rgba(16, 16, 19, 0.2);
+}
+.restaurant-img{
+      width: 200px;
+         margin-left: 45px;
+         margin-bottom: 10px;
+         padding-top: 0px;
+      }
+      .Please-Sign-In{
+         padding-top:0px;
+         padding-bottom:5px;
+         text-align: start;
+      }
+      .tind{
+         padding-top: 40px;
+         text-align: center;
+       padding-bottom: 0px;
+      }
+      .Need_an_account {
+       color: rgba(0, 0, 255, 0.617);
+       text-align: center
+       }

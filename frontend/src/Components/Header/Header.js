@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import fire from './fire.svg'
 import header from './header.css'
+
 class Header extends Component {
     constructor(props) {
         super(props);

@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom'
 import Header from '../Header/Header'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import Invite from '../Invite/Invite'
+import fire from './fire.svg'
 
 const mapStateToProps = state => {
     return {
@@ -36,21 +37,27 @@ class Main extends Component {
         return(
             <div>
                 {this.props.token.token !== undefined ?
-                        <div>
-                            <Navbar collapseOnSelect fixed='static-top' expand='sm' bg='dark' variant='dark'>
-                                <Container>
+                    <div>
+                        
+                        <Navbar collapseOnSelect fixed='static-top' expand='sm' bg='dark' variant='dark'>
+                            
+                                <Container className='Container'>  
+                <img src={fire} alt="fire" className = "fire"/>
+                <h4 className = "tinder">Restaurant Tinder</h4>
                                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                                     <Navbar.Collapse id='responsive-navbar-nav'>
                                         <Nav>
-                                            <Nav.Link to='/home'>Home</Nav.Link>
-                                            <Nav.Link as={Link} to='/login' onClick={this.handleLogout}>logout</Nav.Link> 
+                                        <Nav.Link to='/home'>Home</Nav.Link>
+                                        <Nav.Link as={Link} to='/login' onClick={this.handleLogout}>logout</Nav.Link> 
+                                        <Nav.Link as={Link} to='/invite'>Create an invitation</Nav.Link>
                                             <Redirect to='/home'/>
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Container>
-                            </Navbar>
+                        </Navbar>
+                        
                         </div>  
-                    : 
+                    :
                         <Header />
                 }
                 <Switch>
