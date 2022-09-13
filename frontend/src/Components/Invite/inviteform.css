@@ -53,3 +53,15 @@
     justify-content: center;
 
   }
+
+  .search {
+    margin-top: 2em;
+  }
+
+  .emails {
+    margin-top: 2em;
+  }
+
+  .submit-btn {
+    margin-top: 1em;
+  }

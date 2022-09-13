@@ -22,8 +22,14 @@ class InviteForm extends React.Component {
             error: null
         };
 
-
-       
+        // //form 
+        // this.state = {
+        //     term: '',
+        //     location: '',
+        //     items: [],
+        //     date: '',
+        //     time: ''
+        // }
 
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleLocationChange = this.handleLocationChange.bind(this);
@@ -32,7 +38,7 @@ class InviteForm extends React.Component {
 
       }
 
-/**********************************************email****************************************************************/
+/********************************************** email ****************************************************************/
     handleKeyDown = evt => {
         if (["Enter", "Tab", ","].includes(evt.key)) {
         evt.preventDefault();
@@ -84,44 +90,46 @@ class InviteForm extends React.Component {
     isEmail(email) {
         return /[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/.test(email);
     }
-/*****************************************term/location input *************************************************************/
+
+/***************************************** term/location input *************************************************************/
 
 
   handleTermChange(event) {
     this.setState({term: event.target.value});
+    console.log(this.state)
   }
 
   handleLocationChange(event) {
     this.setState({location: event.target.value});
+    console.log(this.state)
   }
 
-
-
-
-
-/************************************************on submit*****************************************************************/
+/************************************************ on submit*****************************************************************/
 
 
   onSubmit(event) {
     event.preventDefault();
     console.log(this.state);
+    // this.props.searchYelp(this.state.term, this.state.location);
+
   }
 
-/****************************************************render********************************************************************/
+/**************************************************** render ***************************************************************/
+
     render() {
         return (
         <form onSubmit={this.onSubmit}>
 
-        <h1>form continued</h1>
-
         <div classname='enter-location'>
-        <h6>Enter search criteria to create invitation results</h6>
+        <h3 className='search'>Enter search criteria to create invitation results </h3>
         <input placeholder="type of food" onChange={this.handleTermChange} />
         <input placeholder="location" onChange={this.handleLocationChange}/>
         </div>
 
         <div classname='email'>
-        <h6>Add emails and press Enter:</h6>
+        <div className='emails'>
+        <h3>Add emails and press Enter:</h3>
+        </div>
             {this.state.items.map(item => (
             <div className="tag-item" key={item}>
                 {item}
@@ -145,11 +153,7 @@ class InviteForm extends React.Component {
             {this.state.error && <p className="error">{this.state.error}</p>}      
             </div>
 
-            <div>
-           {/* <TimeDate /> */}
-            </div>
-           
-           <input type="submit" value="Submit" />
+           <input type="submit" value="Submit" className='submit-btn'/>
            
         </form>
         );

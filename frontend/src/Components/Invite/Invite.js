@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import './invite.css';
 import DateMomentUtils from '@date-io/moment';
 import {
   KeyboardDatePicker,
@@ -8,6 +9,7 @@ import {
  KeyboardDateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
+import InviteForm from './InviteForm';
 
 
 
@@ -16,6 +18,7 @@ function Invite() {
   const [selectedTime, setSelectedTime] = useState(new Date());
   const [dateString, setDateString] = useState('');
   const [timeString, setTimeString] = useState('');
+  const [isShown, setIsShown] = useState(false);
   // console.log(moment())
   // // console.log(selectedDate)
   // console.log(moment(selectedDate).format('MMMM Do YYYY'))
@@ -24,38 +27,65 @@ function Invite() {
   useEffect(() => {
     setDateString(moment(selectedDate).format('MMMM Do YYYY')); 
     setTimeString(moment(selectedTime).format('h:mm a'));
-
   }, [selectedDate, selectedTime]);
 
   const onSubmit = (e) => {
     e.preventDefault();
     setDateString(moment(selectedDate).format('MMMM Do YYYY'));
     setTimeString(moment(selectedTime).format('h:mm a'));
-
     console.log(dateString)
     console.log(timeString)
+    setIsShown(current => !current);
   }
 
+  const changeDate = () => {
+    setIsShown(current => !current);
+  }
  
   return (
+
     <div>
-    <h1>Select time and date for event</h1>
     <div className="date-time">
+      {!isShown && ( 
       <MuiPickersUtilsProvider utils={DateMomentUtils}>
+        <h3 className='text'>Select the date and time for your event: </h3>
         <KeyboardDatePicker value={selectedDate} onChange={setSelectedDate} />
         <KeyboardTimePicker value={selectedTime} onChange={setSelectedTime} />
+        <button onClick={onSubmit}>Save Date and Time</button>
       </MuiPickersUtilsProvider>
-    </div>
+      )}
 
-    <div>
-    <button onClick={onSubmit}>Save Date and Time</button>
-    </div>
+      {/* <div>
+      {isShown && (
+      )}
+      </div> */}
 
-    <div>
-    <Link to={{pathname: "/inviteform"}}>
+      <div>
+      {isShown && (
+        <MuiPickersUtilsProvider utils={DateMomentUtils}>
+        <button onClick={changeDate} className='change-date'>Change Event Date</button>
+        <h3 >Creating invitation for {dateString} at {timeString}</h3>
+
+        <InviteForm dateString={dateString} timeString={timeString} />
+        </MuiPickersUtilsProvider>
+      )}
+      </div>
+
+     
+    </div>
+       
+
+
+
+
+
+    {/* <div className='continue-btn'>
+    <Link to={{pathname: "/inviteform", dateString: dateString}}>
         <button>Continue</button>
-    </Link>
-    </div>
+    </Link> */}
+
+
+
 
 
 
