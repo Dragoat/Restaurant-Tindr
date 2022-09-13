@@ -1,126 +1,72 @@
-import React from "react";
-import "./invite.css";
-import TimeDate from './TimeDate'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
+import DateMomentUtils from '@date-io/moment';
+import {
+  KeyboardDatePicker,
+  KeyboardTimePicker,
+ KeyboardDateTimePicker,
+  MuiPickersUtilsProvider,
+} from '@material-ui/pickers';
 
 
-class Invite extends React.Component {
 
+function Invite() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState(new Date());
+  const [dateString, setDateString] = useState('');
+  const [timeString, setTimeString] = useState('');
+  // console.log(moment())
+  // // console.log(selectedDate)
+  // console.log(moment(selectedDate).format('MMMM Do YYYY'))
+  // console.log(moment(selectedTime).format('h:mm a'))
 
+  useEffect(() => {
+    setDateString(moment(selectedDate).format('MMMM Do YYYY')); 
+    setTimeString(moment(selectedTime).format('h:mm a'));
 
-/*****************************************************************************************************************/
-    state = {
-        items: [],
-        value: "",
-        error: null
-    };
-    
-    handleKeyDown = evt => {
-        if (["Enter", "Tab", ","].includes(evt.key)) {
-        evt.preventDefault();
-    
-        var value = this.state.value.trim();
-    
-        if (value && this.isValid(value)) {
-            this.setState({
-            items: [...this.state.items, this.state.value],
-            value: ""
-            });
-        }
-        }
-    };
-    
-    handleEmailChange = evt => {
-        this.setState({
-        value: evt.target.value,
-        error: null
-        });
-    };
-    
-    handleDelete = item => {
-        this.setState({
-        items: this.state.items.filter(i => i !== item)
-        });
-    };
-    
-    isValid(email) {
-        let error = null;
-    
-        if (this.isInList(email)) {
-        error = `${email} has already been added.`;
-        }
-    
-        if (!this.isEmail(email)) {
-        error = `${email} is not a valid email address.`;
-        }
-    
-        if (error) {
-        this.setState({ error });
-    
-        return false;
-        }
-    
-        return true;
-    }
-    
-    isInList(email) {
-        return this.state.items.includes(email);
-    }
-    
-    isEmail(email) {
-        return /[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/.test(email);
-    }
-/*-------------------------------------------------------------------------------------------------------------------------*/
+  }, [selectedDate, selectedTime]);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setDateString(moment(selectedDate).format('MMMM Do YYYY'));
+    setTimeString(moment(selectedTime).format('h:mm a'));
+
+    console.log(dateString)
+    console.log(timeString)
+  }
+
+ 
+  return (
+    <div>
+    <h1>Select time and date for event</h1>
+    <div className="date-time">
+      <MuiPickersUtilsProvider utils={DateMomentUtils}>
+        <KeyboardDatePicker value={selectedDate} onChange={setSelectedDate} />
+        <KeyboardTimePicker value={selectedTime} onChange={setSelectedTime} />
+      </MuiPickersUtilsProvider>
+    </div>
+
+    <div>
+    <button onClick={onSubmit}>Save Date and Time</button>
+    </div>
+
+    <div>
+    <Link to={{pathname: "/inviteform"}}>
+        <button>Continue</button>
+    </Link>
+    </div>
 
 
 
 
 
+    </div>
+
+  
 
 
+  )
+}
 
-    
-    render() {
-        return (
-        <form>
-
-        <h1>Invite</h1>
-
-        <div classname='enter-location'>
-        <h6>Enter location to create invitation results</h6>
-        <input placeholder="location" />
-        </div>
-
-        <div classname='email'>
-        <h6>Enter email addresses to send invitation</h6>
-            {this.state.items.map(item => (
-            <div className="tag-item" key={item}>
-                {item}
-                <button
-                type="button"
-                className="button"
-                onClick={() => this.handleDelete(item)}
-                >
-                &times;
-                </button>
-            </div>
-            ))}
-    
-            <input
-            className={"input " + (this.state.error && " has-error")}
-            value={this.state.value}
-            placeholder="Email address"
-            onKeyDown={this.handleKeyDown}
-            onChange={this.handleEmailChange}
-            />
-                    {this.state.error && <p className="error">{this.state.error}</p>}
-                   
-            </div>
-
-           <TimeDate />
-           
-        </form>
-        );
-    }
-    }
-    export default Invite;
-      
+export default Invite;
