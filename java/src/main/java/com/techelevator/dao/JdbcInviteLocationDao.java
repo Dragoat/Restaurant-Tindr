@@ -20,7 +20,7 @@ public class JdbcInviteLocationDao implements InviteLocationDao{
     @Override
     public void createInviteLocation(InviteLocation inviteLocation) {
         boolean created;
-        String sql = "INSERT INTO invite_location (invite_id, place_id) VALUES (?, ?);";
+        String sql = "INSERT INTO no_voted_locations (invite_id, place_id) VALUES (?, ?);";
         jdbcTemplate.update(sql, inviteLocation.getInviteId(), inviteLocation.getPlaceId());
 
     }
@@ -34,7 +34,7 @@ public class JdbcInviteLocationDao implements InviteLocationDao{
     // gets deleted the all assocaited invite-location data also gets erased,but just in case this exists
     @Override
     public void deleteInviteLocation(String placeId,int inviteId) {
-        String sql = "DELETE FROM invite_location WHERE place_id = ? and invite_id = ?;";
+        String sql = "DELETE FROM no_voted_locations WHERE place_id = ? and invite_id = ?;";
         jdbcTemplate.update(sql, placeId, inviteId);
         System.out.println("Invite Location Deleted");
     }
@@ -44,7 +44,7 @@ public class JdbcInviteLocationDao implements InviteLocationDao{
     @Override
     public InviteLocation getOneLocationAssociatedWithInviteId(String placeId, int inviteId) throws Exception {
 
-        String sql = "SELECT invite_id, place_id FROM invite_location WHERE place_id =? and invite_id = ? ;";
+        String sql = "SELECT invite_id, place_id FROM no_voted_locations WHERE place_id =? and invite_id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, placeId, inviteId);
         if (results.next()) {
             return mapRowToInviteLocation(results);
@@ -56,7 +56,7 @@ public class JdbcInviteLocationDao implements InviteLocationDao{
     @Override
     public List<InviteLocation> findLocationsAssociatedWithInviteId(int inviteId) throws Exception {
         List<InviteLocation> locations = new ArrayList<>();
-        String sql = "SELECT invite_id, place_id FROM invite_location WHERE invite_id = ? ;";
+        String sql = "SELECT invite_id, place_id FROM no_voted_locations WHERE invite_id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
         while (results.next()) {
             InviteLocation location = mapRowToInviteLocation(results);

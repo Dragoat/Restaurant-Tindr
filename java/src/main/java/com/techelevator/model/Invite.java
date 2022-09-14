@@ -66,8 +66,8 @@ public class Invite {
                 "invite_id=" + inviteId +
                 ", sender_id=" + senderId +
                 ", appointment=" + appointment +
-                ", locationSearch=" + locationSearch +
-                ", foodSearch=" + foodSearch +
+                ", location_search=" + locationSearch +
+                ", food_search=" + foodSearch +
                 '}';
     }
 }
