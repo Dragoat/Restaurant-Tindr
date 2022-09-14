@@ -25,8 +25,8 @@ function Invite() {
     e.preventDefault();
     setDateString(moment(selectedDate).format('MMMM Do YYYY'));
     setTimeString(moment(selectedTime).format('h:mm a'));
-    console.log(dateString)
-    console.log(timeString)
+    // console.log(dateString)
+    // console.log(timeString)
     setIsShown(current => !current);
   }
 

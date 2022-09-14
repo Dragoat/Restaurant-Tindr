@@ -95,89 +95,27 @@ class InviteForm extends React.Component {
 
    onSave = e => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
     //save to back end 
+
+
     const inviteData = {
-        senderId: '',
-        foodSearch: this.state.term,
-        locationSearch: this.state.location,
-    
+        senderId: '5',
         appointment: this.props.dateString + " " + this.props.timeString,
+        location_search: this.state.location + "",
+        foodSearch: this.state.term + ""
     }
-
-
-    // items: this.state.items,
-        // dateString: this.props.dateString,
-    
-    axios.post(`http://localhost:8081/invites`, { inviteData }, {
-
-
-
-
+    console.log(inviteData)
+    axios.post(`http://localhost:8081/invites`, inviteData, {
         headers: {
             'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(inviteData)
-        
-    })
-    .then(response => {
-      console.log(response);
-    })
-
-
-    // if( inviteData.inviteId != undefined ) {
-    //     // update
-    //     axios.put('http://localhost:8081/invites' + inviteData.inviteId, {
-    //        cache: 'no-cache',
-    //        headers: {
-    //            'Content-Type': 'application/json'
-    //        },
-    //        body: JSON.stringify(inviteData)
-    //    })
-    //     .then((response) => {
-    //         if( response.ok ) {
-    //            alert('ok!');
-    //        }
-    //    })
-    //    .catch((err) => {
-    //        console.error(err);
-    //        alert('not ok');
-    //    });
-    // } else {
-
-    // axios.post("http://localhost:8081/invites", {inviteData}, {
-    //     headers: { "Content-Type": "application/json", 
-    //     // "Access-Control-Allow-Origin": "*",
-    //     // 'cache-control': 'no-cache',
-    //     // "Authorization": "Bearer" + localStorage.getItem("token") 
-        
-
-    // },
-    //     body: JSON.stringify(inviteData)
-    // }).then((res) =>{
-    //     // console.log(res)
-    //     console.log("new invite created");
-    // })
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
+        }})
+     
+        .then(() => {
+        console.log('invite created');
+        })
 
     }
-
-
-
 
 /**************************************************** render ***************************************************************/
 
@@ -220,11 +158,11 @@ class InviteForm extends React.Component {
             <button onClick={this.onSave}>Save</button>
 
 
-            <div>{this.state.term}</div>
+            {/* <div>{this.state.term}</div>
             <div>{this.state.location}</div>
             <div>{this.state.items}</div>
             <div>{this.props.dateString}</div>
-            <div>{this.props.timeString}</div>
+            <div>{this.props.timeString}</div> */}
         </div>
   
         );
