@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 import './invite.css';
+import InviteForm from './InviteForm';
 import DateMomentUtils from '@date-io/moment';
 import {
   KeyboardDatePicker,
   KeyboardTimePicker,
- KeyboardDateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
-import InviteForm from './InviteForm';
-
-
 
 function Invite() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -19,10 +15,6 @@ function Invite() {
   const [dateString, setDateString] = useState('');
   const [timeString, setTimeString] = useState('');
   const [isShown, setIsShown] = useState(false);
-  // console.log(moment())
-  // // console.log(selectedDate)
-  // console.log(moment(selectedDate).format('MMMM Do YYYY'))
-  // console.log(moment(selectedTime).format('h:mm a'))
 
   useEffect(() => {
     setDateString(moment(selectedDate).format('MMMM Do YYYY')); 
@@ -43,7 +35,6 @@ function Invite() {
   }
  
   return (
-
     <div>
     <div className="date-time">
       {!isShown && ( 
@@ -55,11 +46,6 @@ function Invite() {
       </MuiPickersUtilsProvider>
       )}
 
-      {/* <div>
-      {isShown && (
-      )}
-      </div> */}
-
       <div>
       {isShown && (
         <MuiPickersUtilsProvider utils={DateMomentUtils}>
@@ -70,32 +56,8 @@ function Invite() {
         </MuiPickersUtilsProvider>
       )}
       </div>
-
-     
     </div>
-       
-
-
-
-
-
-    {/* <div className='continue-btn'>
-    <Link to={{pathname: "/inviteform", dateString: dateString}}>
-        <button>Continue</button>
-    </Link> */}
-
-
-
-
-
-
-
-
     </div>
-
-  
-
-
   )
 }
 

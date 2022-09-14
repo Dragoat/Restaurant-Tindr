@@ -1,41 +1,26 @@
-import React, { useState } from 'react';
-import Invite from './Invite';
+import React from 'react';
 import './inviteform.css';
-
-
+import axios from 'axios';
 
 /*************************************************state****************************************************************/
 class InviteForm extends React.Component {
     constructor(props) {
         super(props);
     
-        //restaurants
         this.state = {
-          term: '',
-          location: '',
-        }
-    
-        //emails
-        this.state = {
+            dateString: '',
+            timeString: '',
+            term: '',
+            location: '',
             items: [],
             value: "",
             error: null
         };
 
-        // //form 
-        // this.state = {
-        //     term: '',
-        //     location: '',
-        //     items: [],
-        //     date: '',
-        //     time: ''
-        // }
-
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleLocationChange = this.handleLocationChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-
+        this.onSave = this.onSave.bind(this);
       }
 
 /********************************************** email ****************************************************************/
@@ -57,7 +42,8 @@ class InviteForm extends React.Component {
     handleEmailChange = evt => {
         this.setState({
         value: evt.target.value,
-        error: null
+        error: null,
+        appointment: this.props.dateString + " " + this.props.timeString,
         });
         // console.log(this.state)
     };
@@ -96,39 +82,117 @@ class InviteForm extends React.Component {
 
   handleTermChange(event) {
     this.setState({term: event.target.value});
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   handleLocationChange(event) {
     this.setState({location: event.target.value});
-    console.log(this.state)
+    // console.log(this.state)
   }
 
-/************************************************ on submit*****************************************************************/
+/************************************************ save *****************************************************************/
 
 
-  onSubmit(event) {
-    event.preventDefault();
+   onSave = e => {
+    e.preventDefault();
     console.log(this.state);
-    // this.props.searchYelp(this.state.term, this.state.location);
+    //save to back end 
+    const inviteData = {
+        senderId: '',
+        foodSearch: this.state.term,
+        locationSearch: this.state.location,
+    
+        appointment: this.props.dateString + " " + this.props.timeString,
+    }
 
-  }
+
+    // items: this.state.items,
+        // dateString: this.props.dateString,
+    
+    axios.post(`http://localhost:8081/invites`, { inviteData }, {
+
+
+
+
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inviteData)
+        
+    })
+    .then(response => {
+      console.log(response);
+    })
+
+
+    // if( inviteData.inviteId != undefined ) {
+    //     // update
+    //     axios.put('http://localhost:8081/invites' + inviteData.inviteId, {
+    //        cache: 'no-cache',
+    //        headers: {
+    //            'Content-Type': 'application/json'
+    //        },
+    //        body: JSON.stringify(inviteData)
+    //    })
+    //     .then((response) => {
+    //         if( response.ok ) {
+    //            alert('ok!');
+    //        }
+    //    })
+    //    .catch((err) => {
+    //        console.error(err);
+    //        alert('not ok');
+    //    });
+    // } else {
+
+    // axios.post("http://localhost:8081/invites", {inviteData}, {
+    //     headers: { "Content-Type": "application/json", 
+    //     // "Access-Control-Allow-Origin": "*",
+    //     // 'cache-control': 'no-cache',
+    //     // "Authorization": "Bearer" + localStorage.getItem("token") 
+        
+
+    // },
+    //     body: JSON.stringify(inviteData)
+    // }).then((res) =>{
+    //     // console.log(res)
+    //     console.log("new invite created");
+    // })
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
 
 /**************************************************** render ***************************************************************/
 
     render() {
         return (
-        <form onSubmit={this.onSubmit}>
-
-        <div classname='enter-location'>
-        <h3 className='search'>Enter search criteria to create invitation results </h3>
+        <div>
+        <div className='enter-location'>
+        <h3 className='search'>Enter search criteria to create invitation results</h3>
         <input placeholder="type of food" onChange={this.handleTermChange} />
         <input placeholder="location" onChange={this.handleLocationChange}/>
         </div>
 
         <div classname='email'>
         <div className='emails'>
-        <h3>Add emails and press Enter:</h3>
+        <h4>Add emails to send invitations - Press Enter to add multiple</h4>
         </div>
             {this.state.items.map(item => (
             <div className="tag-item" key={item}>
@@ -142,7 +206,7 @@ class InviteForm extends React.Component {
                 </button>
             </div>
             ))}
-    
+
             <input
             className={"input " + (this.state.error && " has-error")}
             value={this.state.value}
@@ -153,9 +217,16 @@ class InviteForm extends React.Component {
             {this.state.error && <p className="error">{this.state.error}</p>}      
             </div>
 
-           <input type="submit" value="Submit" className='submit-btn'/>
-           
-        </form>
+            <button onClick={this.onSave}>Save</button>
+
+
+            <div>{this.state.term}</div>
+            <div>{this.state.location}</div>
+            <div>{this.state.items}</div>
+            <div>{this.props.dateString}</div>
+            <div>{this.props.timeString}</div>
+        </div>
+  
         );
     }
     }

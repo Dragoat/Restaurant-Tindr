@@ -10,7 +10,6 @@ import Header from '../Header/Header'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import Invite from '../Invite/Invite'
 import fire from './fire.svg'
-import InviteForm from '../Invite/InviteForm'
 
 const mapStateToProps = state => {
     return {
