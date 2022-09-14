@@ -22,7 +22,7 @@ public class InviteLocationController {
     }
 
     //the database has a delete cascade set up on invite_id so that when an invite_id
-    // gets deleted the all assocaited invite-location data also gets erased,but just in case this exists
+    // gets deleted the all assocaited invite-location data also gets erased,but just in case this exists..nvm foreign key restraint hs been lifted
     @DeleteMapping(value = "/{placeId}/{inviteId}")
     public void deleteInvite(@PathVariable String placeId, @PathVariable int inviteId) {
         inviteLocationDao.deleteInviteLocation(placeId,inviteId);

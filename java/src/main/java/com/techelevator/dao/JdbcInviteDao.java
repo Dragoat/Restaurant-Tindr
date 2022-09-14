@@ -27,12 +27,14 @@ public class JdbcInviteDao implements InviteDao {
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "invite_id";
 
-        String createNewInvite = "INSERT INTO invites (sender_id, appointment)  VALUES (?,?) RETURNING invite_id;";
+        String createNewInvite = "INSERT INTO invites (sender_id, appointment, locationSearch, foodSearch)  VALUES (?,?,?,?) RETURNING invite_id;";
 
         inviteCreated = jdbcTemplate.update(con -> {
             PreparedStatement statement = con.prepareStatement(createNewInvite, new String[] { id_column });
             statement.setInt(1, invite.getSenderId());
             statement.setString(2, invite.getAppointment());
+            statement.setString(3, invite.getLocationSearch());
+            statement.setString(4, invite.getFoodSearch());
             return statement;
         }, keyHolder) == 1;
 
@@ -44,7 +46,7 @@ public class JdbcInviteDao implements InviteDao {
 
     @Override
     public void updateInvite(@RequestBody Invite invite) {
-        String sql = "update invites Set (sender_id, appointment)  VALUES (?,?) WHERE invite_id = ?";
+        String sql = "update invites Set (sender_id, appointment, locationSearch, foodSearch)  VALUES (?,?,?,?) WHERE invite_id = ?";
         jdbcTemplate.update(sql, invite.getSenderId(), invite.getAppointment(), invite.getInviteId());
     }
 
@@ -69,7 +71,7 @@ public class JdbcInviteDao implements InviteDao {
     @Override
     public List<Invite> findAllSentInvitesByUserId(@PathVariable int senderId) throws Exception {
         List<Invite> invites = new ArrayList<>();
-        String sql = "SELECT invite_id, sender_id, appointment FROM invites WHERE sender_id = ? ;";
+        String sql = "SELECT * FROM invites WHERE sender_id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, senderId);
         while (results.next()) {
             Invite invite = mapRowToInvite(results);
@@ -91,6 +93,8 @@ public class JdbcInviteDao implements InviteDao {
         invite.setInviteId(rs.getInt("invite_id"));
         invite.setSenderId(rs.getInt("sender_id"));
         invite.setAppointment(rs.getString("appointment"));
+        invite.setLocationSearch(rs.getString("locationSearch"));
+        invite.setFoodSearch(rs.getString("foodLocation"));
         return invite;
     }
 

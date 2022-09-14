@@ -20,8 +20,8 @@ public class JdbcInviteLocationDao implements InviteLocationDao{
     @Override
     public void createInviteLocation(InviteLocation inviteLocation) {
         boolean created;
-        String sql = "INSERT INTO invite_location (invite_id, place_id, no_vote, yes_vote) VALUES (?, ?, ?, ?);";
-        jdbcTemplate.update(sql, inviteLocation.getInviteId(), inviteLocation.getPlaceId(),inviteLocation.getNoVote(),inviteLocation.getYesVote());
+        String sql = "INSERT INTO invite_location (invite_id, place_id) VALUES (?, ?);";
+        jdbcTemplate.update(sql, inviteLocation.getInviteId(), inviteLocation.getPlaceId());
 
     }
 
@@ -44,7 +44,7 @@ public class JdbcInviteLocationDao implements InviteLocationDao{
     @Override
     public InviteLocation getOneLocationAssociatedWithInviteId(String placeId, int inviteId) throws Exception {
 
-        String sql = "SELECT invite_id, place_id, no_vote, yes_vote FROM invite_location WHERE place_id =? and invite_id = ? ;";
+        String sql = "SELECT invite_id, place_id FROM invite_location WHERE place_id =? and invite_id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, placeId, inviteId);
         if (results.next()) {
             return mapRowToInviteLocation(results);
@@ -56,7 +56,7 @@ public class JdbcInviteLocationDao implements InviteLocationDao{
     @Override
     public List<InviteLocation> findLocationsAssociatedWithInviteId(int inviteId) throws Exception {
         List<InviteLocation> locations = new ArrayList<>();
-        String sql = "SELECT invite_id, place_id, no_vote, yes_vote FROM invite_location WHERE invite_id = ? ;";
+        String sql = "SELECT invite_id, place_id FROM invite_location WHERE invite_id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
         while (results.next()) {
             InviteLocation location = mapRowToInviteLocation(results);
@@ -72,8 +72,6 @@ public class JdbcInviteLocationDao implements InviteLocationDao{
         InviteLocation inviteLocation = new InviteLocation();
         inviteLocation.setInviteId(rs.getInt("invite_id"));
         inviteLocation.setPlaceId(rs.getString("place_id"));
-        inviteLocation.setNoVote(rs.getInt("no_vote"));
-        inviteLocation.setYesVote(rs.getInt("yes_vote"));
         return inviteLocation ;
     }
 

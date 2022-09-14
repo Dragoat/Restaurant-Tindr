@@ -6,6 +6,8 @@ public class Invite {
     private int inviteId;
     private int senderId;
     private String appointment;
+    private String locationSearch;
+    private String foodSearch;
 
 
     public int getInviteId() {
@@ -32,13 +34,30 @@ public class Invite {
         this.appointment = appointment;
     }
 
+    public String getLocationSearch() {
+        return locationSearch;
+    }
+
+    public void setLocationSearch(String locationSearch) {
+        this.locationSearch = locationSearch;
+    }
+
+    public String getFoodSearch() {
+        return foodSearch;
+    }
+
+    public void setFoodSearch(String foodSearch) {
+        this.foodSearch = foodSearch;
+    }
 
     public Invite() { }
 
-    public Invite( int senderId, String appointment) {
+    public Invite( int senderId, String appointment, String locationSearch, String foodSearch) {
 
         this.senderId = senderId;
         this.appointment = appointment;
+        this.locationSearch = locationSearch;
+        this.foodSearch = foodSearch;
     }
 
     @Override
@@ -46,7 +65,9 @@ public class Invite {
         return "Invite{" +
                 "invite_id=" + inviteId +
                 ", sender_id=" + senderId +
-                ", transfer_status_id=" + appointment +
+                ", appointment=" + appointment +
+                ", locationSearch=" + locationSearch +
+                ", foodSearch=" + foodSearch +
                 '}';
     }
 }
