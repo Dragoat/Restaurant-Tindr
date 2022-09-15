@@ -5,6 +5,7 @@ import BusinessList from '../BusinessList/BusinessList';
 import './home.css';
 import { Link } from 'react-router-dom';
 
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -24,15 +25,13 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className='button'>
-        <Link to='/invite'>
-        <button>Create an invitation</button>
-        </Link>
-        </div>
-        <SearchBar searchYelp={this.searchData} />
+      <>
+      <div className='Main-body '>
+          <SearchBar searchYelp={this.searchData} />
+          </div>
         <BusinessList businesses={this.state.businesses} />
-      </div>
+        
+      </>
     );
   }
 }

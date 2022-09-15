@@ -35,7 +35,8 @@ function Invite() {
   }
  
   return (
-    <div>
+   <div className='invite-pic'>
+       
     <div className="date-time">
       {!isShown && ( 
       <MuiPickersUtilsProvider utils={DateMomentUtils}>
@@ -48,7 +49,7 @@ function Invite() {
 
       <div>
       {isShown && (
-        <MuiPickersUtilsProvider utils={DateMomentUtils}>
+            <MuiPickersUtilsProvider utils={DateMomentUtils}>
         <button onClick={changeDate} className='change-date'>Change Event Date</button>
         <h3 >Creating invitation for {dateString} at {timeString}</h3>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import './searchbar.css'
+import Header from '../Header/Header'
 
 class SearchBar extends React.Component {
     
@@ -35,13 +36,15 @@ class SearchBar extends React.Component {
       
       <div className='searchbar'>
       <div>
-      <h3>Search for Restaurants</h3>
+      <h3 className='Search-for-Restaurants '>Search for Restaurants</h3>
       </div>
-      <div>
+          <div>
+          
           <input placeholder="type of food" onChange={this.handleTermChange} />
           <input placeholder="location" onChange={this.handleLocationChange}/>
-          <button onClick={this.handleSearch}>Search</button>
+          <button onClick={this.handleSearch} className='Search-btn'>Search</button>
           </div>
+          
       </div>
       </>
     );

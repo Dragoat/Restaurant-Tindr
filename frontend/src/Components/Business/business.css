@@ -6,11 +6,12 @@
     margin-top: 10px;
     border: 1px solid black;
     align-items: center;
+    border-radius: 5px;
 }
 
 .business-image {
     width: 18rem;
-    height: 10rem;
+    height: auto;
 }
 
 

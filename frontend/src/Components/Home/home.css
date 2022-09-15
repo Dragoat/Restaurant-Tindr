@@ -1,5 +1,22 @@
-.button {
-    display: flex;
-    justify-content: flex-end;
-    padding: 1em;
+body{
+    background-color: rgba(0, 5, 7, 0.603);
+}
+.Main-body {
+
+    background-image: url("pic1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        ". ."
+        ". .";
+        
+      
+}
+.searchBar{
+    border-radius: 5%;
 }

@@ -1,6 +1,27 @@
 .searchbar {
-    display: flex;
+  display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+        margin-top: 2em;
+            margin-bottom: 8em;
+
+}
+.Search-btn{
+    border-radius:10%;
+    color: rgb(0, 0, 0);
+        background-color: rgb(0, 255, 225);
+}
+.Search-btn:hover {
+    color: white;
+    background-color: black;
+    box-shadow: 3px 3px 1px 1px rgba(16, 16, 19, 0.2);
+
+}
+.Search-for-Restaurants{
+    color: rgb(1, 0, 10);
+    text-align: start;
+   margin-top: 50px;
+    margin-top: 2em;
+       
 }

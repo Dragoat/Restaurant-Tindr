@@ -1,9 +1,26 @@
 .change-date {
     margin-top: 2em;
-    margin-bottom: 1em;
+    margin-bottom: 2.5em;
+    
 }
 
 .text {
     margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 5em;
 }
+ .invite-pic {
+
+     background-image: url("invitation.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+     height: auto;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     grid-template-rows: 1fr 1fr;
+     grid-template-areas:
+         ". ."
+         ". .";
+    
+
+ }

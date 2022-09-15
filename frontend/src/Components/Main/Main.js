@@ -11,6 +11,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap'
 import Invite from '../Invite/Invite'
 import fire from './fire.svg'
 
+
 const mapStateToProps = state => {
     return {
         token: state.token,
@@ -32,6 +33,7 @@ class Main extends Component {
         this.props.addToken("")
         this.props.deleteUser()
     }
+    
 
     render(){
         return(
@@ -43,22 +45,32 @@ class Main extends Component {
                             
                                 <Container className='Container'>  
                 <img src={fire} alt="fire" className = "fire"/>
-                <h4 className = "tinder">Restaurant Tinder</h4>
+                                <h4 className="tinder">Restaurant Tinder</h4>
                                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                                     <Navbar.Collapse id='responsive-navbar-nav'>
                                         <Nav>
-                                        <Nav.Link to='/home'>Home</Nav.Link>
+                                    <Nav.Link as={Link} to='/home'>Home</Nav.Link>
                                         <Nav.Link as={Link} to='/login' onClick={this.handleLogout}>logout</Nav.Link> 
                                         <Nav.Link as={Link} to='/invite'>Create an invitation</Nav.Link>
-                                            <Redirect to='/home'/>
+                                                            
+   
+          
+                                        <Redirect to='/home' />
+                                      
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Container>
                         </Navbar>
-                        
-                        </div>  
+                      
+        
+                        </div>
+                    
+                    
                     :
-                        <Header />
+                    
+                    <Header />
+                        
+                       
                 }
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
