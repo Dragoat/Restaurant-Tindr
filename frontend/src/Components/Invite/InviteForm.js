@@ -109,6 +109,7 @@ class InviteForm extends React.Component {
     axios.post(`http://localhost:8081/invites`, inviteData, {
         headers: {
             'Content-Type': 'application/json',
+            //  'Authorization': 'Bearer '+token
         }})
      
         .then(() => {
@@ -128,7 +129,7 @@ class InviteForm extends React.Component {
         <input placeholder="location" onChange={this.handleLocationChange}/>
         </div>
 
-        <div classname='email'>
+        <div className='email'>
         <div className='emails'>
         <h4>Add emails to send invitations - Press Enter to add multiple</h4>
         </div>
