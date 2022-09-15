@@ -102,7 +102,7 @@ class InviteForm extends React.Component {
     const inviteData = {
         senderId: '5',
         appointment: this.props.dateString + " " + this.props.timeString,
-        location_search: this.state.location + "",
+        locationSearch: this.state.location + "",
         foodSearch: this.state.term + ""
     }
     console.log(inviteData)
