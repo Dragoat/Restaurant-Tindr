@@ -2,6 +2,7 @@ import React from 'react';
 import apiData from '../../api';
 import SearchBar from '../SearchBar/SearchBar';
 import BusinessList from '../BusinessList/BusinessList';
+import fire from '../Main/fire.svg';
 import './home.css';
 
 
@@ -28,10 +29,17 @@ class Home extends React.Component {
   render() {
     return (
       <>
+        
       <div className='Main-body '>
           <SearchBar searchYelp={this.searchData} />
-          </div>
-        <BusinessList businesses={this.state.businesses} />        
+        </div>
+        <div className='Tinderlicious'>
+          <h1 ><img src={fire} alt="fire" className = "fire-home"/> Restaurant Tinder</h1>
+         <p>Pick the coolest and fun places in your city, with ideal settings based on your love for food.</p>
+        </div>
+        
+        <BusinessList businesses={this.state.businesses} />   
+        
       </>
     );
   }

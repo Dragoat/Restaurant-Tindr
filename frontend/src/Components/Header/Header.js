@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import SearchBar from '../SearchBar/SearchBar';
-import fire from './fire.svg'
+import fire from '../Main/fire.svg';
 import header from './header.css'
 
 class Header extends Component {

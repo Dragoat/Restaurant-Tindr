@@ -1,5 +1,5 @@
 body{
-    background-color: rgba(0, 5, 7, 0.603);
+background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(255, 77, 0));
 }
 .Main-body {
 
@@ -7,7 +7,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: auto;
+    height: 50vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -15,8 +15,23 @@ body{
         ". ."
         ". .";
         
+        border:solid 1px black;
+        
       
 }
 .searchBar{
     border-radius: 5%;
+}
+.Tinderlicious{
+    text-align: center;
+    font: italic 1.5em "Fira Sans", serif;
+    text-shadow: 50px;
+    font-weight: bold;
+    border-bottom: 1px;
+    margin-top: 1em;
+}
+.fire-home{
+    width: 55px;
+    margin-bottom: 0.5em;
+    
 }

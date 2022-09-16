@@ -7,11 +7,13 @@
     border: 1px solid black;
     align-items: center;
     border-radius: 5px;
+    margin-bottom: 2em;
 }
 
 .business-image {
     width: 18rem;
     height: auto;
+    
 }
 
 

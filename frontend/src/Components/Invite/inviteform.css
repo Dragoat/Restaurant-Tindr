@@ -56,13 +56,44 @@
 
   .search {
     margin-top: 2em;
+    font-size: 100%;
+    font:  1.2em "Fira Sans", serif;
   }
 
   .emails {
     margin-top: 2em;
+    font-size: 100%;
+    font: 1.2em "Fira Sans", serif;
   }
 
   .submit-btn {
     margin-top: 1em;
   }
-   
+    .add-email-text{
+      font-size: 100%;
+    }
+    .save{
+      color: rgb(0, 0, 0);
+        background-color: rgb(0, 255, 225);
+        border-radius: 5px;
+        font-family: Helvetica, sans-serif;
+    }
+    .save:hover {
+    color: white;
+    background-color: black;
+    box-shadow: 3px 3px 1px 1px rgba(16, 16, 19, 0.2);
+            }
+    .return-home{
+      color: rgb(0, 0, 0);
+        background-color: rgb(0, 255, 225);
+        border-radius: 5px;
+        font-family: Helvetica, sans-serif;
+            padding-left: 30px;
+            padding-right: 30px;
+            margin-top: 20px;
+    }
+        .return-home:hover {
+          color: white;
+          background-color: black;
+          box-shadow: 3px 3px 1px 1px rgba(16, 16, 19, 0.2);
+        }   

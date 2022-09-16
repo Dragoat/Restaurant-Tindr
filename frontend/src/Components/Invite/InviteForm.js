@@ -137,7 +137,7 @@ class InviteForm extends React.Component {
 
         <div className='email'>
         <div className='emails'>
-        <h4>Add emails to send invitations - Press Enter to add multiple</h4>
+        <h4 className='add-email-text'>Add emails to send invitations - Press Enter to add multiple</h4>
         </div>
             {this.state.items.map(item => (
             <div className="tag-item" key={item}>
@@ -162,10 +162,10 @@ class InviteForm extends React.Component {
             {this.state.error && <p className="error">{this.state.error}</p>}      
             </div>
 
-            <button onClick={this.onSave}>Save</button>
+            <button onClick={this.onSave}className='save'>Save</button>
             <div>
             <Link to='/home'>
-            <button>return home</button>
+            <button className='return-home'>return home</button>
             </Link>
             </div>
         </div>

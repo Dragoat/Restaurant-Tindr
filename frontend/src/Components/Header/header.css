@@ -1,7 +1,7 @@
 .tinder{
     font-weight: bolder;
     color:white;
-    font-family:Apple Chancery;
+   font: italic 1.5em "Fira Sans", serif;
    display:flex;
    margin-right: 5vh;
    padding-top: 10px;
