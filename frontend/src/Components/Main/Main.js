@@ -10,6 +10,7 @@ import Header from '../Header/Header'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import Invite from '../Invite/Invite'
 import fire from './fire.svg'
+import Invitations from '../Invitations/Invitations'
 
 
 const mapStateToProps = state => {
@@ -18,6 +19,8 @@ const mapStateToProps = state => {
         user: state.user
     }
 }
+
+
 
 const mapDispatchToProps = (dispatch) => ({
     addToken: () => { dispatch(addToken()) },
@@ -52,11 +55,8 @@ class Main extends Component {
                                     <Nav.Link as={Link} to='/home'>Home</Nav.Link>
                                         <Nav.Link as={Link} to='/login' onClick={this.handleLogout}>logout</Nav.Link> 
                                         <Nav.Link as={Link} to='/invite'>Create an invitation</Nav.Link>
-                                                            
-   
-          
+                                        {/* <Nav.Link as={Link} to='/invitations'>Invitations</Nav.Link> */}
                                         <Redirect to='/home' />
-                                      
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Container>
@@ -75,7 +75,9 @@ class Main extends Component {
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
+                    <Route path='/home' component={() => <Home />}/>
                      <Route path ='/invite' component={() => <Invite />}/>
+                        {/* <Route path ='/invitations' component={() => <Invitations />}/> */}
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                 </Switch>
             </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import './inviteform.css';
 import axios from 'axios';
 
+
 /*************************************************state****************************************************************/
 class InviteForm extends React.Component {
     constructor(props) {
@@ -21,8 +22,11 @@ class InviteForm extends React.Component {
         this.handleLocationChange = this.handleLocationChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.onSave = this.onSave.bind(this);
+
+    
       }
 
+      
 /********************************************** email ****************************************************************/
     handleKeyDown = evt => {
         if (["Enter", "Tab", ","].includes(evt.key)) {
@@ -98,9 +102,10 @@ class InviteForm extends React.Component {
     // console.log(this.state);
     //save to back end 
 
+    const token = this.props.token
 
     const inviteData = {
-        senderId: '5',
+        senderId: this.props.username,
         appointment: this.props.dateString + " " + this.props.timeString,
         locationSearch: this.state.location + "",
         foodSearch: this.state.term + ""
@@ -109,13 +114,15 @@ class InviteForm extends React.Component {
     axios.post(`http://localhost:8081/invites`, inviteData, {
         headers: {
             'Content-Type': 'application/json',
-            //  'Authorization': 'Bearer '+token
+             'Authorization': 'Bearer ' + token
         }})
      
         .then(() => {
         console.log('invite created');
         })
-
+        .catch(err => {
+        console.log(err);
+        });
     }
 
 /**************************************************** render ***************************************************************/
@@ -157,13 +164,6 @@ class InviteForm extends React.Component {
             </div>
 
             <button onClick={this.onSave}>Save</button>
-
-
-            {/* <div>{this.state.term}</div>
-            <div>{this.state.location}</div>
-            <div>{this.state.items}</div>
-            <div>{this.props.dateString}</div>
-            <div>{this.props.timeString}</div> */}
         </div>
   
         );

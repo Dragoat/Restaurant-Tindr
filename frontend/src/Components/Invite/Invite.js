@@ -8,6 +8,7 @@ import {
   KeyboardTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
+import { useSelector } from 'react-redux';
 
 function Invite() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -15,6 +16,12 @@ function Invite() {
   const [dateString, setDateString] = useState('');
   const [timeString, setTimeString] = useState('');
   const [isShown, setIsShown] = useState(false);
+
+  const username = useSelector((state) => state.user.id);
+  const token = useSelector((state) => state.token.token);
+  console.log(token)
+  console.log(username);
+
 
   useEffect(() => {
     setDateString(moment(selectedDate).format('MMMM Do YYYY')); 
@@ -53,7 +60,7 @@ function Invite() {
         <button onClick={changeDate} className='change-date'>Change Event Date</button>
         <h3 >Creating invitation for {dateString} at {timeString}</h3>
 
-        <InviteForm dateString={dateString} timeString={timeString} />
+        <InviteForm username={username} token={token} dateString={dateString} timeString={timeString} />
         </MuiPickersUtilsProvider>
       )}
       </div>
