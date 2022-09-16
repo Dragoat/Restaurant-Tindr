@@ -1,6 +1,10 @@
 import React from 'react';
 import './inviteform.css';
 import axios from 'axios';
+import Home from '../Home/Home';
+import { NavLink } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Nav } from 'reactstrap';
 
 
 /*************************************************state****************************************************************/
@@ -99,11 +103,7 @@ class InviteForm extends React.Component {
 
    onSave = e => {
     e.preventDefault();
-    // console.log(this.state);
-    //save to back end 
-
     const token = this.props.token
-
     const inviteData = {
         senderId: this.props.username,
         appointment: this.props.dateString + " " + this.props.timeString,
@@ -116,7 +116,6 @@ class InviteForm extends React.Component {
             'Content-Type': 'application/json',
              'Authorization': 'Bearer ' + token
         }})
-     
         .then(() => {
         console.log('invite created');
         })
@@ -164,6 +163,11 @@ class InviteForm extends React.Component {
             </div>
 
             <button onClick={this.onSave}>Save</button>
+            <div>
+            <Link to='/home'>
+            <button>return home</button>
+            </Link>
+            </div>
         </div>
   
         );

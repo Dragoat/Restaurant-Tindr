@@ -19,9 +19,8 @@ function Invite() {
 
   const username = useSelector((state) => state.user.id);
   const token = useSelector((state) => state.token.token);
-  console.log(token)
-  console.log(username);
-
+  // console.log(token)
+  // console.log(username);
 
   useEffect(() => {
     setDateString(moment(selectedDate).format('MMMM Do YYYY')); 
