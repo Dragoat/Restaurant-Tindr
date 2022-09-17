@@ -1,6 +1,7 @@
 import React from 'react';
 import './business.css'
 import BusinessInfo from '../BusinessInfo/BusinessInfo';
+import LikeButton from '../LikeButton/LikeButton'
 import axios from 'axios';
 import { useState } from 'react';
 import API_KEY from '../restaurantData'
@@ -143,10 +144,16 @@ function Business (props) {
 
     return (
       <div className="business">
-        <img src={props.business.imageSrc} alt='' className='business-image'/>
+        
         <h2>{props.business.name}</h2>
+        <br/>
+        <img src={props.business.imageSrc} alt='' className='business-image' />
+        <br/>
+        <LikeButton />
+        <br/>
         {/* <p>{props.business.id}</p> */}
-        <button onClick={handleClick}>View More Details</button>
+        
+        <button onClick={handleClick} className='view-more'>View More Details</button>
         {showComponent ? <BusinessInfo monStart={mondayStart} monClose={mondayEnd} 
         tuesStart={tuesdayStart} tuesClose={tuesdayEnd} wedStart={wednesdayStart} wedClose={wesnesdayEnd} 
         thursStart={thursdayStart} thursClose={thursdayEnd} friStart={fridayStart} friClose={fridayEnd} 
@@ -157,7 +164,8 @@ function Business (props) {
         <p>{props.business.address} {props.business.city} {props.business.state} {props.business.zipCode}</p>
         <a href={"tel:" + props.business.displayPhone}>{props.business.displayPhone}</a>
         <p>type: {props.business.category}</p>
-        <p>{`${props.business.rating} stars`}</p>
+        <p>⭐️{`${props.business.rating} stars`}</p>
+        
       </div>
     );
   

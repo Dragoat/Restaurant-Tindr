@@ -31,11 +31,7 @@ class Login extends Component {
 
     handleLogin = async () => {
         const data = { username: this.state.username, password: this.state.password };
-        
-
         const userWithToken = await axios.post(baseUrl + '/login', data)
-
-        
         await this.props.dispatch(addToken(userWithToken.data.token))
         await this.props.dispatch(addUser(userWithToken.data.user));
     }
@@ -83,20 +79,14 @@ class Login extends Component {
                     onChange={this.handleInputChange}
                     required
                          />
-                         
-                         
                          <a href="javascript:void(0)"className='Need_an_account'>Forgot your password?</a>
                          <button type="submit" onClick={this.handleLogin} className="sign-in">Sign in</button>
                          <p id='OR'>-OR-</p>
                          <button type="submit" className="facebook"><img src={facebook} alt="facebook" className="facebook-img" />Continue with Facebook</button>
-                         
                          <div id='h1-space'>-</div>
                          <button type="submit" className="google"><img src={google} alt="google" className="google-img" />Continue with Google</button>
                          <br />
-                         
-                         <Link to="/register" className='Need_an_account'>Need an account?</Link>
-                      
-                             
+                         <Link to="/register" className='Need_an_account'>Need an account?</Link>   
            </div>
             </div>
         );

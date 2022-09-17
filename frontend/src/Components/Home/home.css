@@ -2,20 +2,11 @@ body{
 background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(255, 77, 0));
 }
 .Main-body {
-
-    background-image: url("pic1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 50vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-        ". ."
-        ". .";
-        
-        border:solid 1px black;
+    border:solid 1px black;
         
       
 }
