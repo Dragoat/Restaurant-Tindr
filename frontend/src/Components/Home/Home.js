@@ -4,6 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import BusinessList from '../BusinessList/BusinessList';
 import fire from '../Main/fire.svg';
 import './home.css';
+import Invitations from './Invitations';
 
 class Home extends React.Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class Home extends React.Component {
          <p>Pick the coolest and fun places in your city, with ideal settings based on your love for food.</p>
         </div>
         <BusinessList businesses={this.state.businesses} />   
-        
+        <Invitations />
       </>
     );
   }

@@ -11,7 +11,9 @@ import { Navbar, Nav, Container } from 'react-bootstrap'
 import Invite from '../Invite/Invite'
 import fire from './fire.svg'
 import DarkMode from '../../DarkMode'
-import darkMode from '../../darkMode.css'
+import darkMode from '../../DarkMode.css'
+import Invitations from '../Home/Invitations'
+import InviteData from '../Home/InviteData'
 
 
 
@@ -57,7 +59,6 @@ class Main extends Component {
                                     <Nav.Link as={Link} to='/home'>Home</Nav.Link>
                                         <Nav.Link as={Link} to='/login' onClick={this.handleLogout}>logout</Nav.Link> 
                                         <Nav.Link as={Link} to='/invite'>Create an invitation</Nav.Link>
-                                        {/* <Nav.Link as={Link} to='/invitations'>Invitations</Nav.Link> */}
                                         <Redirect to='/home' />
                                         </Nav>
                                         <DarkMode/>
@@ -82,7 +83,7 @@ class Main extends Component {
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/home' component={() => <Home />}/>
                      <Route path ='/invite' component={() => <Invite />}/>
-                        {/* <Route path ='/invitations' component={() => <Invitations />}/> */}
+                     <Route path = '/invitations' component={() => <InviteData />}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                 </Switch>
             </div>
