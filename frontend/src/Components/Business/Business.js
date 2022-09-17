@@ -142,9 +142,9 @@ function Business (props) {
     return finalTime + ':' + minutes + AmOrPm;
   }
 
-    return (
+  return (
+      
       <div className="business">
-        
         <h2>{props.business.name}</h2>
         <br/>
         <img src={props.business.imageSrc} alt='' className='business-image' />
