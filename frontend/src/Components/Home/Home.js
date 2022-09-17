@@ -5,7 +5,6 @@ import BusinessList from '../BusinessList/BusinessList';
 import fire from '../Main/fire.svg';
 import './home.css';
 
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +27,7 @@ class Home extends React.Component {
   render() {
     return (
       <>
+        
           <div className ='Main-body' style={{ 
       backgroundImage: `url("https://images.unsplash.com/photo-1646032538355-99f04d61a3c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")` 
     }}>

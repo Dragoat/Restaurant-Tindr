@@ -3,6 +3,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import SearchBar from '../SearchBar/SearchBar';
 import fire from '../Main/fire.svg';
 import header from './header.css'
+import DarkMode from '../../DarkMode';
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +20,7 @@ class Header extends Component {
                 
                 <Container className='Container'>  
                 <img src={fire} alt="fire" className = "fire"/>
-                <h4 className = "tinder">Restaurant Tinder</h4>
+                    <h4 className="tinder">Restaurant Tinder</h4>
                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                     <Navbar.Collapse id='responsive-navbar-nav'>
                         <Nav>
@@ -27,7 +28,10 @@ class Header extends Component {
                             <Nav></Nav>
                             <Nav.Link href='/login'>Login</Nav.Link>
                             <Nav.Link href='/register'>Register</Nav.Link>
+                               <DarkMode />
+                           
                         </Nav>
+                         
                     </Navbar.Collapse>
                 </Container>
                 </Navbar>

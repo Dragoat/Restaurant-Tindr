@@ -10,7 +10,9 @@ import Header from '../Header/Header'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import Invite from '../Invite/Invite'
 import fire from './fire.svg'
-import Invitations from '../Invitations/Invitations'
+import DarkMode from '../../DarkMode'
+import darkMode from '../../darkMode.css'
+
 
 
 const mapStateToProps = state => {
@@ -58,7 +60,9 @@ class Main extends Component {
                                         {/* <Nav.Link as={Link} to='/invitations'>Invitations</Nav.Link> */}
                                         <Redirect to='/home' />
                                         </Nav>
-                                    </Navbar.Collapse>
+                                        <DarkMode/>
+                                </Navbar.Collapse>
+                                
                                 </Container>
                         </Navbar>
                       
@@ -67,8 +71,9 @@ class Main extends Component {
                     
                     
                     :
-                    
+                   
                     <Header />
+                     
                         
                        
                 }

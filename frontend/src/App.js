@@ -4,7 +4,6 @@ import {BrowserRouter} from 'react-router-dom'
 import {ConfigureStore} from './Redux/configureStore'
 import Footer from './Components/Footer/Footer'
 import "./App.css";
-import DarkMode from "./DarkMode";
 const store = ConfigureStore();
 
 function App() {
@@ -13,9 +12,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <>
-          <DarkMode />
           <Main />
-           
           <Footer />
           </>
       </BrowserRouter>
