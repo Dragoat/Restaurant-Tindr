@@ -1,54 +1,43 @@
-import axios from "axios";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import {Link} from "react-router-dom";
 
+class Invitations extends React.Component {
+ constructor(props) {
+		super(props);
+		this.state = {
+			items: [],
+			DataisLoaded: false
+		};
+	}
+	componentDidMount() {
+		fetch(
+"https://jsonplaceholder.typicode.com/users")
+			.then((res) => res.json())
+			.then((json) => {
+				this.setState({
+					items: json,
+					DataisLoaded: true
+				});
+			})
+	}
+	render() {
+		const { DataisLoaded, items } = this.state;
+		if (!DataisLoaded) return <div>
+			<h1> Test.... </h1> </div> ;
 
-function Invitations() {
-    const userId = useSelector((state) => state.user.id);
-    const token = useSelector((state) => state.token.token);
-    // console.log(username)
-    // console.log(token)
-
-    
-    const [invitations, setInvitations] = React.useState([]);
-
-    // useEffect(() => getInvitations, [])
-    function getInvitations () {
-        fetch('http://localhost:8081/invite_list/invitee/' + userId, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            }
-        })
-        .then(response => response.json())
-        .then(data => setInvitations(data))  
-        console.log(invitations)
-        }
-
-
-
-
-
-    return ( 
-        <div>
-            <h1>Invitations</h1>
-            
-              {invitations.map((invite) => {
-                return(
-                    <div id={invite.userId} key={invite.inviteId}>
-                        <Link to='/invitations/' token={token} userId={userId} inviteId={invite.inviteId}>
-                        <p>{invite.inviteId} link to invitation data</p>
-                        <p></p>
-                        </Link>
-                    </div>
-                )
-            })} 
-
-            <button onClick={getInvitations}>Get Invitations</button>
-        </div>
-     );
+		return (
+		<div className = "App">
+			<h1> Test.... </h1> {
+				items.map((item) => (
+				<ol key = { item.id } >
+					User_Name: { item.username },
+					Full_Name: { item.name },
+					User_Email: { item.email }
+					</ol>
+				))
+			}
+		</div>
+	);
+}
 }
 
 export default Invitations;
