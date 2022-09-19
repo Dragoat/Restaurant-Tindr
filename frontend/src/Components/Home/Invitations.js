@@ -10,28 +10,36 @@ class Invitations extends React.Component {
 	}
 	componentDidMount() {
 		fetch(
-"https://jsonplaceholder.typicode.com/users")
+"http://localhost:8081/invite_list/invitee/ 124")
 			.then((res) => res.json())
 			.then((json) => {
 				this.setState({
-					items: json,
+					invite: json,
 					DataisLoaded: true
 				});
 			})
 	}
+	async componentDidMount() {
+    const response = await fetch("http://localhost:8081/invite_list/invitee/124");
+    const json = await response.json();
+    this.setState({
+        invite: json,
+        DataisLoaded: true
+    });
+    console.log(json);
+      }
 	render() {
-		const { DataisLoaded, items } = this.state;
+		const { DataisLoaded, invite } = this.state;
 		if (!DataisLoaded) return <div>
 			<h1> Test.... </h1> </div> ;
 
 		return (
 		<div className = "App">
 			<h1> Test.... </h1> {
-				items.map((item) => (
-				<ol key = { item.id } >
-					User_Name: { item.username },
-					Full_Name: { item.name },
-					User_Email: { item.email }
+				invite.map((invite) => (
+				<ol key = { invite.id } >
+					name: { invite.username },
+					User_Email: { invite.email }
 					</ol>
 				))
 			}
