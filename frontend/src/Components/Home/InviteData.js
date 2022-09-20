@@ -16,10 +16,6 @@ function InviteData(props) {
     console.log(token)
     console.log(inviteId)
 
-
-
-
-
 useEffect(() => {
     axios.get('http://localhost:8081/invites/' + inviteId, {
         headers: {
@@ -31,8 +27,6 @@ useEffect(() => {
         console.log(response.data)
         setInviteData(response.data)
         setInviteDetails({foodSearch: response.data.foodSearch, location: response.data.location})
-      
-
     })
     .then(() => {
         axios.get('http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=' + 'taco' + '&location=' + 'ohio', { 
@@ -44,27 +38,27 @@ useEffect(() => {
                     console.log(response.data)
                     setBusinessList(response.data)
                 })
-                // .then(() => {
+    //             .then(() => {
                     
-                //         return businessList.map(business => ({
-                //             id: business.id,
-                //             imageSrc: business.image_url,
-                //             name: business.name,
-                //             isClosed: business.is_closed, 
-                //             address: business.location.address1,
-                //             city: business.location.city,
-                //             state: business.location.state,
-                //             zipCode: business.location.zip_code,
-                //             transactions: business.transactions, 
-                //             latitude: business.coordinates.latitude,
-                //             longitude: business.coordinates.longitude,
-                //             category: business.categories[0].title,
-                //             rating: business.rating,
-                //             displayPhone: business.display_phone,
-                //             reviewCount: business.review_count
-                //         }));
-                //     }
-                // )     
+    //                     return businessList.map(business => ({
+    //                         id: business.id,
+    //                         imageSrc: business.image_url,
+    //                         name: business.name,
+    //                         isClosed: business.is_closed, 
+    //                         address: business.location.address1,
+    //                         city: business.location.city,
+    //                         state: business.location.state,
+    //                         zipCode: business.location.zip_code,
+    //                         transactions: business.transactions, 
+    //                         latitude: business.coordinates.latitude,
+    //                         longitude: business.coordinates.longitude,
+    //                         category: business.categories[0].title,
+    //                         rating: business.rating,
+    //                         displayPhone: business.display_phone,
+    //                         reviewCount: business.review_count
+    //                     }));
+    //                 }
+    //             )     
     })
 }, [])
 

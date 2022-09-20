@@ -15,16 +15,12 @@ import darkMode from '../../DarkMode.css'
 import Invitations from '../Home/Invitations'
 import InviteData from '../Home/InviteData'
 
-
-
 const mapStateToProps = state => {
     return {
         token: state.token,
         user: state.user
     }
 }
-
-
 
 const mapDispatchToProps = (dispatch) => ({
     addToken: () => { dispatch(addToken()) },
