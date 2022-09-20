@@ -1,21 +1,18 @@
 import React from 'react';
-import Business from '../Business/Business';
+import Restaurant from './Restaurant';
 
 class RestaurantList extends React.Component {
-
-
   render() {
     return (
-      <div className='list'>
-      <div className='business'>
+      <div>
+        <div>
         {
-          (this.props.businesses && this.props.businesses.map(business => {
+          (this.props.businesses && this.props.businesses.slice(0, 10).map(business => {
             return (
-            <Business business={business} key={business.id} /> 
+            <Restaurant business={business} key={business.id} /> 
           )}))
-          
         }
-      </div>
+        </div>
       </div>
     );
   }

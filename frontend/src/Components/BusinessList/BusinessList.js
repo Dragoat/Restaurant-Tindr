@@ -3,24 +3,20 @@ import Business from '../Business/Business';
 import './businesslist.css'
 
 class BusinessList extends React.Component {
-
-
   render() {
     return (
       <div className='list'>
-      <div className='business'>
+        <div className='business'>
         {
-          (this.props.businesses && this.props.businesses.map(business => {
+          (this.props.businesses && this.props.businesses.slice(0, 10).map(business => {
             return (
-            
             <Business business={business} key={business.id} /> 
           )}))
-          
         }
-      </div>
+        </div>
       </div>
     );
   }
 }
 
-export default BusinessList;
+export default BusinessList

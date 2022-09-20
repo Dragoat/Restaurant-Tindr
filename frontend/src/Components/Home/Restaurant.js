@@ -1,13 +1,10 @@
 import React from 'react';
-import './business.css'
 import BusinessInfo from '../BusinessInfo/BusinessInfo';
-import LikeButton from '../LikeButton/LikeButton'
-import DisLikeButton from '../LikeButton/DisLikeButton'
 import axios from 'axios';
 import { useState } from 'react';
 
 
-function Business (props) {
+function Restaurant (props) {
   const API_KEY = 'NFObK7SDG3Ydps6H3FWcww0uarQlzVqnY_osBgmG4wg-9K2v7bVsu5fachNVIxtuxL6Eknh0Su4EnukxiVVGlxaSF_U0a444-gqV0vnTjvs7w4C-1rYr68jKgn8OY3Yx'
   const [showComponent, setShowComponent] = useState(false);
   const [mondayStart, setMondayStart] = useState('');
@@ -52,6 +49,7 @@ function Business (props) {
       setMondayStart('N/A')
       setMondayEnd('N/A')
     }
+
       if(res.data.hours[0].open[1]) {
         if(res.data.hours[0].open[1].start === undefined){
           setTuesDayStart('Closed')
@@ -64,6 +62,7 @@ function Business (props) {
         setTuesDayStart('N/A')
         setTuesdayEnd('N/A')
       }
+
         if(res.data.hours[0].open[2]) {
         if(res.data.hours[0].open[2].start === undefined){
           setWednesdayStart('Closed')
@@ -76,6 +75,7 @@ function Business (props) {
         setWednesdayStart('N/A')
         setWednesdayEnd('N/A')
       }
+
         if(res.data.hours[0].open[3]) {
         if(res.data.hours[0].open[3].start === undefined){
           setThursdayStart('Closed')
@@ -88,6 +88,7 @@ function Business (props) {
         setThursdayStart('N/A')
         setThursdayEnd('N/A')
       }
+
         if(res.data.hours[0].open[4]) {  
         if(res.data.hours[0].open[4].start === undefined){
           setFridayStart('Closed')
@@ -100,6 +101,7 @@ function Business (props) {
         setFridayStart('N/A')
         setFridayEnd('N/A')
       }
+
         if(res.data.hours[0].open[5]) {
         if(res.data.hours[0].open[5] === undefined){
           setSaturdayStart('Closed')
@@ -112,6 +114,7 @@ function Business (props) {
         setSaturdayStart('N/A')
         setSaturdayEnd('N/A')
       }
+
         if(res.data.hours[0].open[6]) {
         if(res.data.hours[0].open[6] === undefined){
           setSundayStart('Closed') 
@@ -129,37 +132,35 @@ function Business (props) {
   }
 
   function changeTime(time) {
-    const hours = time.slice(0, 2)
-    const minutes = time.slice(-2)
-    const AmOrPm = hours >= 12 ? 'pm' : 'am'
-    const finalTime = hours % 12 || 12
-    return finalTime + ':' + minutes + AmOrPm
+    const hours = time.slice(0, 2);
+    const minutes = time.slice(-2);
+    const AmOrPm = hours >= 12 ? 'pm' : 'am';
+    const finalTime = hours % 12 || 12;
+    return finalTime + ':' + minutes + AmOrPm;
   }
 
+  // const like = () => {
+
+  // }
+
+  const handleRemove = (id) =>{
+    console.log(id)
+    console.log(props.business)
+  }
   return (
       <div className="business">
-      <h2>{props.business.name}</h2>
-        <br/>
-        <img src={props.business.imageSrc} alt='' className='business-image' />
-        <br />
-          <div className ="like-button">
-            <LikeButton />
-            <DisLikeButton />
-          </div>
-        <br/>
-        <button onClick={handleClick} className='view-more'>View More Details</button>
-        {showComponent ? <BusinessInfo monStart={mondayStart} monClose={mondayEnd} 
-        tuesStart={tuesdayStart} tuesClose={tuesdayEnd} wedStart={wednesdayStart} wedClose={wesnesdayEnd} 
-        thursStart={thursdayStart} thursClose={thursdayEnd} friStart={fridayStart} friClose={fridayEnd} 
-        satStart={saturdayStart} satClose={saturdayEnd} sunStart={sundayStart} sunClose={sundayEnd} isOpen={isOpen}/> : null} 
-        <p>{props.business.transactions[0]} {props.business.transactions[1]} {props.business.transactions[2]}</p>
-        <p>{props.business.isClosed}</p>
-        <a href = {`https://maps.google.com/?q=${props.business.latitude},${props.business.longitude}`}>View on Google Maps</a>
-        <p>{props.business.address} {props.business.city} {props.business.state} {props.business.zipCode}</p>
-        <a href={"tel:" + props.business.displayPhone}>{props.business.displayPhone}</a>
-        <p>type: {props.business.category}</p>
-        <p>⭐️{`${props.business.rating} stars`}</p>
+              <h2>{props.business.name}</h2>
+              <img src={props.business.image_url} />
+              <p>Rating: {props.business.rating}</p>
+              <a href = {`https://maps.google.com/?q=${props.business.latitude},${props.business.longitude}`}>View on Google Maps</a>
+              <a href={"tel:" + props.business.display_phone}>{props.business.display_phone}</a>
+              <p>{props.business.location.display_address[0]} {props.business.location.display_address[1]}</p>
+              <p>⭐️{`${props.business.rating} stars`}</p>
+              <button>Like</button>
+              <button>Dislike</button>
       </div>
-    )
+    );
+  
 }
-export default Business
+
+export default Restaurant;

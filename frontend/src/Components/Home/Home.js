@@ -9,7 +9,7 @@ import AppimageSilder from '../Business/AppimageSilder';
 
 class Home extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       businesses: []
@@ -21,11 +21,9 @@ class Home extends React.Component {
   searchData(term, location) {
     apiData.search(term, location).then(businesses => {
       this.setState({businesses: businesses});
-
-    });
+    })
   }
 
-  
   render() {
     return (
       <>
@@ -38,8 +36,8 @@ class Home extends React.Component {
           <SearchBar searchYelp={this.searchData} />
         <BusinessList businesses={this.state.businesses} />
       </>
-    );
+    )
   }
 }
 
-export default Home;
+export default Home
