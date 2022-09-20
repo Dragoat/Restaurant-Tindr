@@ -2,9 +2,11 @@ import React from 'react';
 import './business.css'
 import BusinessInfo from '../BusinessInfo/BusinessInfo';
 import LikeButton from '../LikeButton/LikeButton'
+import DisLikeButton from '../LikeButton/DisLikeButton'
 import axios from 'axios';
 import { useState } from 'react';
 import API_KEY from '../restaurantData'
+
 
 
 function Business (props) {
@@ -141,15 +143,20 @@ function Business (props) {
     const finalTime = hours % 12 || 12;
     return finalTime + ':' + minutes + AmOrPm;
   }
+  
 
   return (
       
       <div className="business">
-        <h2>{props.business.name}</h2>
+      <h2>{props.business.name}</h2>
         <br/>
         <img src={props.business.imageSrc} alt='' className='business-image' />
-        <br/>
+      <br />
+      <div className ="like-button">
         <LikeButton />
+        
+        <DisLikeButton />
+      </div>
         <br/>
         {/* <p>{props.business.id}</p> */}
         

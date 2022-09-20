@@ -11,6 +11,13 @@
 
   .input {
     display: flex;
+    border: none;
+      border-bottom: 2px solid black;
+      background-color: transparent;
+      color: black;
+      resize: none;
+      outline: none;
+    
     
   }
   
@@ -57,13 +64,13 @@
   .search {
     margin-top: 2em;
     font-size: 100%;
-    font:  1.2em "Fira Sans", serif;
+  text-align: center;
   }
 
   .emails {
     margin-top: 2em;
     font-size: 100%;
-    font: 1.2em "Fira Sans", serif;
+    
   }
 
   .submit-btn {

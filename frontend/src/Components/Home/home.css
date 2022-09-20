@@ -26,3 +26,7 @@ background-image: rgba(242, 235, 235, 0.651);
     margin-bottom: 0.5em;
     
 }
+.like-button{
+    display: flex;
+    justify-content: space-around
+}

@@ -11,9 +11,11 @@ import { Navbar, Nav, Container } from 'react-bootstrap'
 import Invite from '../Invite/Invite'
 import fire from './fire.svg'
 import DarkMode from '../../DarkMode'
-import darkMode from '../../DarkMode.css'
+import darkMode from '../../darkMode.css'
 import Invitations from '../Home/Invitations'
 import InviteData from '../Home/InviteData'
+
+
 
 const mapStateToProps = state => {
     return {
@@ -21,6 +23,8 @@ const mapStateToProps = state => {
         user: state.user
     }
 }
+
+
 
 const mapDispatchToProps = (dispatch) => ({
     addToken: () => { dispatch(addToken()) },
@@ -57,9 +61,7 @@ class Main extends Component {
                                         <Nav.Link as={Link} to='/invite'>Create an invitation</Nav.Link>
                                         <Redirect to='/home' />
                                         </Nav>
-
-
-                                        {/* <DarkMode/> */}
+                                        <DarkMode/>
                                 </Navbar.Collapse>
                                 
                                 </Container>
@@ -82,7 +84,7 @@ class Main extends Component {
                     <Route path='/home' component={() => <Home />}/>
                      <Route path ='/invite' component={() => <Invite />}/>
                      <Route path = '/invitations' component={() => <InviteData />}/>
-                    {/* <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/> */}
+     {/* <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/> */}
                 </Switch>
             </div>
         )

@@ -1,5 +1,5 @@
 .change-date {
-    margin-top: 2em;
+    margin-top: 4em;
     margin-bottom: 2.5em;
 }
 
@@ -7,20 +7,19 @@
     font-size: 100%;
     margin-bottom: 2em;
     font: italic bold 1.5em "Fira Sans", serif;
+    color: black;
 }
  .invite-pic {
-
-     background-image: url("invitation.jpg");
-     background-repeat: no-repeat;
-     background-size: cover;
-     background-position: center;
-     height: 120vh;
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     grid-template-rows: 1fr 1fr;
-     grid-template-areas:
-         ". ."
-         ". .";
+         background-repeat: no-repeat;
+         background-size: cover;
+         background-position: center;
+         height: 120vh;
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         grid-template-rows: 1fr 1fr;
+         grid-template-areas:
+            ". ."
+            ". .";
     
 
  }
@@ -37,7 +36,7 @@
  }
  .creating-invite{
     font-size: 100%;
-    font: bold 1.1em "Fira Sans", serif;
+ font-weight: bolder;
  }
  .timeAndDate-img{
     width: 100%;
