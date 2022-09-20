@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Router, Switch} from 'react-router-dom'
 import {ConfigureStore} from './Redux/configureStore'
 import Footer from './Components/Footer/Footer'
 import "./App.css";
+import Invitations from './Components/Home/Invitations'
 const store = ConfigureStore();
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <>
+         < Invitations/>
           <Main />
           <Footer />
           </>

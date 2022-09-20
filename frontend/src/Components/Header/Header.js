@@ -4,6 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import fire from '../Main/fire.svg';
 import header from './header.css'
 import DarkMode from '../../DarkMode';
+
 class Header extends Component {
     constructor(props) {
         super(props);
