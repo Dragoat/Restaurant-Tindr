@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Alert, Form, FormGroup, Input, FormFeedback } from 'reactstrap';
 import '../../Components/Register/register.css';
+import restaurant from '../Login/restaurant.svg'
 
 class Register extends Component {
     constructor(props) {
@@ -101,11 +102,12 @@ class Register extends Component {
             <Form onSubmit={this.handleSubmit} className="login-form">
                 
                     <h2 className="text-center"><b>New account?</b></h2>
+                    <img src={restaurant} alt="restaurant" className="restaurant-img" />
                     <br />
                     <div className = "signup--easy"> <p><b>Sign up!</b></p>
                         <p><b>It is quick and easy</b></p>
                     </div>
-                   
+                  
                   {!this.state.userAlreadyExit && this.state.globalMessage && this.state.globalMessage.length > 0 &&<Alert color="primary">{this.state.globalMessage}</Alert>}
                   {this.state.userAlreadyExit &&  this.state.globalMessage && this.state.globalMessage.length > 0 &&<Alert color="danger">{this.state.globalMessage}</Alert>}
                 <FormGroup>

@@ -130,9 +130,10 @@ class InviteForm extends React.Component {
         return (
         <div>
         <div className='enter-location'>
-        <h3 className='search'>Enter search criteria to create invitation results</h3>
-        <input placeholder="type of food" onChange={this.handleTermChange} />
-        <input placeholder="location" onChange={this.handleLocationChange}/>
+                    <h3 className='search'>Enter search criteria to create invitation results</h3>
+                    <br/>
+        <input placeholder="type of food" onChange={this.handleTermChange} className='searchbar-b'/>
+        <input placeholder="location" onChange={this.handleLocationChange}className='searchbar-b'/>
         </div>
 
         <div className='email'>

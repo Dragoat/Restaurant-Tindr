@@ -40,8 +40,8 @@ class SearchBar extends React.Component {
       </div>
           <div>
           
-          <input placeholder="type of food" onChange={this.handleTermChange} />
-          <input placeholder="location" onChange={this.handleLocationChange}/>
+          <input placeholder="type of food" onChange={this.handleTermChange}  className='searchbar-b'/>
+          <input placeholder="location" onChange={this.handleLocationChange}className='searchbar-b'/>
           <button onClick={this.handleSearch} className='Search-btn'>Search</button>
           </div>
           
