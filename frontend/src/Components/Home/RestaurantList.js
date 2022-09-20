@@ -1,8 +1,7 @@
 import React from 'react';
 import Business from '../Business/Business';
-import './businesslist.css'
 
-class BusinessList extends React.Component {
+class RestaurantList extends React.Component {
 
 
   render() {
@@ -12,7 +11,6 @@ class BusinessList extends React.Component {
         {
           (this.props.businesses && this.props.businesses.map(business => {
             return (
-            
             <Business business={business} key={business.id} /> 
           )}))
           
@@ -23,4 +21,4 @@ class BusinessList extends React.Component {
   }
 }
 
-export default BusinessList;
+export default RestaurantList;

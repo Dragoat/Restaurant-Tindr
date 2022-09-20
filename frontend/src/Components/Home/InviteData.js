@@ -1,9 +1,9 @@
-import react, { useEffect } from 'react';
+import { React, useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import BusinessList from '../BusinessList/BusinessList';
-
+import RestaurantList from './RestaurantList';
 function InviteData(props) {
 
     const [inviteData, setInviteData] = useState({});
@@ -15,18 +15,6 @@ function InviteData(props) {
     console.log(token)
     console.log(inviteId)
 
-    const getData = () => {
-  
-        axios.get(`http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${inviteData.foodSearch}&location=${inviteData.locationSearch}`, { 
-            headers: {
-                'Authorization': 'Bearer NFObK7SDG3Ydps6H3FWcww0uarQlzVqnY_osBgmG4wg-9K2v7bVsu5fachNVIxtuxL6Eknh0Su4EnukxiVVGlxaSF_U0a444-gqV0vnTjvs7w4C-1rYr68jKgn8OY3Yx'
-                }
-                })
-                .then(response => {
-                    console.log(response.data)
-                    setBusinessList(response.data)
-                })   
-         }
 
 useEffect(() => {
     axios.get('http://localhost:8081/invites/' + inviteId, {
@@ -51,9 +39,10 @@ useEffect(() => {
                 }
                 })
                 .then(response => {
-                    // console.log(response.data)
+                    console.log(response.data)
                     setBusinessList(response.data)
-                })   
+                    console.log(businessList.businesses.id)
+                }) 
             }
 
     return ( 
@@ -64,11 +53,11 @@ useEffect(() => {
         <div>Appointment: {inviteData.appointment}</div>
         <div>Location Search: {inviteData.locationSearch}</div>
         <div>Food Search: {inviteData.foodSearch}</div>
+        
+        <div></div>
         <button onClick={viewList}>View List</button> 
 
-        
-
-        <BusinessList businesses={businessList.businesses}/>
+        <RestaurantList businesses={businessList.businesses}/>
         </>
      );
 }

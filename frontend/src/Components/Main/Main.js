@@ -11,10 +11,8 @@ import { Navbar, Nav, Container } from 'react-bootstrap'
 import Invite from '../Invite/Invite'
 import fire from './fire.svg'
 import DarkMode from '../../DarkMode'
-import darkMode from '../../darkMode.css'
-import Invitations from '../Home/Invitations'
+import darkMode from '../../DarkMode.css'
 import InviteData from '../Home/InviteData'
-
 
 
 const mapStateToProps = state => {
@@ -23,8 +21,6 @@ const mapStateToProps = state => {
         user: state.user
     }
 }
-
-
 
 const mapDispatchToProps = (dispatch) => ({
     addToken: () => { dispatch(addToken()) },
@@ -57,8 +53,8 @@ class Main extends Component {
                                     <Navbar.Collapse id='responsive-navbar-nav'>
                                         <Nav>
                                     <Nav.Link as={Link} to='/home'>Home</Nav.Link>
-                                        <Nav.Link as={Link} to='/login' onClick={this.handleLogout}>logout</Nav.Link> 
-                                        <Nav.Link as={Link} to='/invite'>Create an invitation</Nav.Link>
+                                        <Nav.Link as={Link} to='/login' onClick={this.handleLogout}>Logout</Nav.Link> 
+                                        <Nav.Link as={Link} to='/invite'>Create an Invitation</Nav.Link>
                                         <Redirect to='/home' />
                                         </Nav>
                                         <DarkMode/>

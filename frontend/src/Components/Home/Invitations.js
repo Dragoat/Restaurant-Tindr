@@ -26,8 +26,10 @@ function Invitations() {
         <div>
             <h1>Invitations</h1>
             
+            
               {invitationList.map((invite) => {
                     return (
+                    
                     <div id={invite.userId} key={invite.inviteId}>
                         <Link  to={{
                             pathname: '/invitations/' + invite.inviteId,

@@ -5,8 +5,6 @@ import LikeButton from '../LikeButton/LikeButton'
 import DisLikeButton from '../LikeButton/DisLikeButton'
 import axios from 'axios';
 import { useState } from 'react';
-import API_KEY from '../restaurantData'
-
 
 
 function Business (props) {
@@ -143,6 +141,14 @@ function Business (props) {
     const finalTime = hours % 12 || 12;
     return finalTime + ':' + minutes + AmOrPm;
   }
+
+  const like = () => {
+
+  }
+
+  const handleRemove = (id) =>{
+    console.log(id)
+  }
   
 
   return (
@@ -152,11 +158,13 @@ function Business (props) {
         <br/>
         <img src={props.business.imageSrc} alt='' className='business-image' />
       <br />
-      <div className ="like-button">
+      {/* <div className ="like-button">
         <LikeButton />
         
         <DisLikeButton />
-      </div>
+      </div> */}
+      <button onClick={like}>Like</button>
+      <button onClick={() => handleRemove(props.business.id)}>Dislike</button>
         <br/>
         {/* <p>{props.business.id}</p> */}
         

@@ -34,6 +34,7 @@ class Home extends React.Component {
           <p>Pick the coolest and fun places in your city, with ideal settings based on your love for food.</p>
          <AppimageSilder/>
         </div>
+        <Invitations />
           <SearchBar searchYelp={this.searchData} />
         <BusinessList businesses={this.state.businesses} />
       </>
