@@ -1,3 +1,4 @@
+import React from 'react';
 const API_KEY = 'NFObK7SDG3Ydps6H3FWcww0uarQlzVqnY_osBgmG4wg-9K2v7bVsu5fachNVIxtuxL6Eknh0Su4EnukxiVVGlxaSF_U0a444-gqV0vnTjvs7w4C-1rYr68jKgn8OY3Yx'
 
 const apiData = {
@@ -13,7 +14,7 @@ const apiData = {
                 id: business.id,
                 imageSrc: business.image_url,
                 name: business.name,
-                isClosed: business.is_closed, //not displaying anything yet
+                isClosed: business.is_closed, 
                 address: business.location.address1,
                 city: business.location.city,
                 state: business.location.state,
