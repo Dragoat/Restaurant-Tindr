@@ -11,7 +11,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap'
 import Invite from '../Invite/Invite'
 import fire from './fire.svg'
 import DarkMode from '../../DarkMode'
-import darkMode from '../../darkMode.css'
+import darkMode from '../../DarkMode.css'
 import Invitations from '../Home/Invitations'
 import InviteData from '../Home/InviteData'
 
@@ -59,7 +59,7 @@ class Main extends Component {
                                         </Nav>
 
 
-                                        <DarkMode/>
+                                        {/* <DarkMode/> */}
                                 </Navbar.Collapse>
                                 
                                 </Container>

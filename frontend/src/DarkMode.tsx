@@ -1,5 +1,5 @@
 import React from "react";
-import "./darkMode.css";
+import "./DarkMode.css";
 import { ChangeEventHandler } from "react";
 
 // 1
