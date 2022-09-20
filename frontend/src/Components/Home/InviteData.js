@@ -6,15 +6,27 @@ import BusinessList from '../BusinessList/BusinessList';
 
 function InviteData(props) {
 
-    const [inviteData, setInviteData] = useState([]);
-    const [inviteDetails, setInviteDetails] = useState({foodSearch: '', location: ''});   
+    const [inviteData, setInviteData] = useState({});
     const [businessList, setBusinessList] = useState({businesses: []});
 
-    const location = useLocation();
+    const location = useLocation()
     const inviteId = location.state.inviteId
     const token = location.state.token
     console.log(token)
     console.log(inviteId)
+
+    const getData = () => {
+  
+        axios.get(`http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${inviteData.foodSearch}&location=${inviteData.locationSearch}`, { 
+            headers: {
+                'Authorization': 'Bearer NFObK7SDG3Ydps6H3FWcww0uarQlzVqnY_osBgmG4wg-9K2v7bVsu5fachNVIxtuxL6Eknh0Su4EnukxiVVGlxaSF_U0a444-gqV0vnTjvs7w4C-1rYr68jKgn8OY3Yx'
+                }
+                })
+                .then(response => {
+                    console.log(response.data)
+                    setBusinessList(response.data)
+                })   
+         }
 
 useEffect(() => {
     axios.get('http://localhost:8081/invites/' + inviteId, {
@@ -24,47 +36,25 @@ useEffect(() => {
         }
     })
     .then(response => {
-        console.log(response.data)
+        // console.log(response.data)
         setInviteData(response.data)
-        setInviteDetails({foodSearch: response.data.foodSearch, location: response.data.location})
+        // console.log(inviteData)
     })
-    .then(() => {
-        axios.get('http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=' + 'taco' + '&location=' + 'ohio', { 
+
+}, [])
+
+    const viewList = () => {
+
+        axios.get(`http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${inviteData.foodSearch}&location=${inviteData.locationSearch}`, { 
             headers: {
                 'Authorization': 'Bearer NFObK7SDG3Ydps6H3FWcww0uarQlzVqnY_osBgmG4wg-9K2v7bVsu5fachNVIxtuxL6Eknh0Su4EnukxiVVGlxaSF_U0a444-gqV0vnTjvs7w4C-1rYr68jKgn8OY3Yx'
                 }
                 })
                 .then(response => {
-                    console.log(response.data)
+                    // console.log(response.data)
                     setBusinessList(response.data)
-                })
-    //             .then(() => {
-                    
-    //                     return businessList.map(business => ({
-    //                         id: business.id,
-    //                         imageSrc: business.image_url,
-    //                         name: business.name,
-    //                         isClosed: business.is_closed, 
-    //                         address: business.location.address1,
-    //                         city: business.location.city,
-    //                         state: business.location.state,
-    //                         zipCode: business.location.zip_code,
-    //                         transactions: business.transactions, 
-    //                         latitude: business.coordinates.latitude,
-    //                         longitude: business.coordinates.longitude,
-    //                         category: business.categories[0].title,
-    //                         rating: business.rating,
-    //                         displayPhone: business.display_phone,
-    //                         reviewCount: business.review_count
-    //                     }));
-    //                 }
-    //             )     
-    })
-}, [])
-
-
-
-
+                })   
+            }
 
     return ( 
         <>
@@ -74,7 +64,9 @@ useEffect(() => {
         <div>Appointment: {inviteData.appointment}</div>
         <div>Location Search: {inviteData.locationSearch}</div>
         <div>Food Search: {inviteData.foodSearch}</div>
+        <button onClick={viewList}>View List</button> 
 
+        
 
         <BusinessList businesses={businessList.businesses}/>
         </>
