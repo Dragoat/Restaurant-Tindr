@@ -8,7 +8,7 @@ class BusinessList extends React.Component {
       <div className='list'>
         <div className='business'>
         {
-          (this.props.businesses && this.props.businesses.slice(0, 10).map(business => {
+          (this.props.businesses && this.props.businesses.slice(0, 50).map(business => {
             return (
             <Business business={business} key={business.id} /> 
           )}))

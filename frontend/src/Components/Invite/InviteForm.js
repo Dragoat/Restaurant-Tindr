@@ -24,7 +24,7 @@ class InviteForm extends React.Component {
 
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleLocationChange = this.handleLocationChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
+        // this.handleEmailChange = this.handleEmailChange.bind(this);
         this.onSave = this.onSave.bind(this);
 
     
@@ -32,58 +32,58 @@ class InviteForm extends React.Component {
 
       
 /********************************************** email ****************************************************************/
-    handleKeyDown = evt => {
-        if (["Enter", "Tab", ","].includes(evt.key)) {
-        evt.preventDefault();
+    // handleKeyDown = evt => {
+    //     if (["Enter", "Tab", ","].includes(evt.key)) {
+    //     evt.preventDefault();
     
-        let value = this.state.value.trim();
+    //     let value = this.state.value.trim();
     
-        if (value && this.isValid(value)) {
-            this.setState({
-            items: [...this.state.items, this.state.value],
-            value: ""
-            });
-        }
-        }
-    };
+    //     if (value && this.isValid(value)) {
+    //         this.setState({
+    //         items: [...this.state.items, this.state.value],
+    //         value: ""
+    //         });
+    //     }
+    //     }
+    // };
     
-    handleEmailChange = evt => {
-        this.setState({
-        value: evt.target.value,
-        error: null,
-        appointment: this.props.dateString + " " + this.props.timeString,
-        });
-        // console.log(this.state)
-    };
+    // handleEmailChange = evt => {
+    //     this.setState({
+    //     value: evt.target.value,
+    //     error: null,
+    //     appointment: this.props.dateString + " " + this.props.timeString,
+    //     });
+    //     // console.log(this.state)
+    // };
     
-    handleDelete = item => {
-        this.setState({
-        items: this.state.items.filter(i => i !== item)
-        });
-    };
+    // handleDelete = item => {
+    //     this.setState({
+    //     items: this.state.items.filter(i => i !== item)
+    //     });
+    // };
     
-    isValid(email) {
-        let error = null;
-        if (this.isInList(email)) {
-        error = `${email} has already been added.`;
-        }
-        if (!this.isEmail(email)) {
-        error = `${email} is not a valid email address.`;
-        }
-        if (error) {
-        this.setState({ error });
-        return false;
-        }
-        return true;
-    }
+    // isValid(email) {
+    //     let error = null;
+    //     if (this.isInList(email)) {
+    //     error = `${email} has already been added.`;
+    //     }
+    //     if (!this.isEmail(email)) {
+    //     error = `${email} is not a valid email address.`;
+    //     }
+    //     if (error) {
+    //     this.setState({ error });
+    //     return false;
+    //     }
+    //     return true;
+    // }
     
-    isInList(email) {
-        return this.state.items.includes(email);
-    }
+    // isInList(email) {
+    //     return this.state.items.includes(email);
+    // }
     
-    isEmail(email) {
-        return /[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/.test(email);
-    }
+    // isEmail(email) {
+    //     return /[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/.test(email);
+    // }
 
 /***************************************** term/location input *************************************************************/
 
@@ -111,7 +111,7 @@ class InviteForm extends React.Component {
         foodSearch: this.state.term + ""
     }
     console.log(inviteData)
-    axios.post(`http://localhost:8081/invites`, inviteData, {
+    axios.post(`http://localhost:8081/invites/`, inviteData, {
         headers: {
             'Content-Type': 'application/json',
              'Authorization': 'Bearer ' + token
@@ -120,8 +120,8 @@ class InviteForm extends React.Component {
         console.log('invite created');
         })
         .catch(err => {
-        console.log(err);
-        });
+        console.log(err)
+        })
     }
 
 /**************************************************** render ***************************************************************/
@@ -136,7 +136,7 @@ class InviteForm extends React.Component {
         <input placeholder="location" onChange={this.handleLocationChange}className='searchbar-b'/>
         </div>
 
-        <div className='email'>
+        {/* <div className='email'>
         <div className='emails'>
         <h4 className='add-email-text'>Add emails to send invitations - Press Enter to add multiple</h4>
         </div>
@@ -161,7 +161,7 @@ class InviteForm extends React.Component {
             onChange={this.handleEmailChange}
             />
             {this.state.error && <p className="error">{this.state.error}</p>}      
-            </div>
+            </div> */}
 
             <button onClick={this.onSave}className='save'>Save</button>
             <div>

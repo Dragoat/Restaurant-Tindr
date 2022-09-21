@@ -13,16 +13,16 @@ import {
 import { useSelector } from 'react-redux';
 
 function Invite() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState(new Date());
-  const [dateString, setDateString] = useState('');
-  const [timeString, setTimeString] = useState('');
-  const [isShown, setIsShown] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date())
+  const [selectedTime, setSelectedTime] = useState(new Date())
+  const [dateString, setDateString] = useState('')
+  const [timeString, setTimeString] = useState('')
+  const [isShown, setIsShown] = useState(false)
 
-  const username = useSelector((state) => state.user);
+  const userId = useSelector((state) => state.user.id);
   const token = useSelector((state) => state.token.token);
   console.log(token)
-  console.log(username);
+  console.log(userId)
 
   useEffect(() => {
     setDateString(moment(selectedDate).format('MMMM Do YYYY')); 
@@ -75,7 +75,7 @@ function Invite() {
      <img src={timeAndDate} alt="timeAndDate" className="timeAndDate-img" />
               <h3 className='creating-invite'>Creating invitation for {dateString} at {timeString}</h3>
                  <button onClick={changeDate} className='change'>Change Event Date</button>
-        <InviteForm username={username} token={token} dateString={dateString} timeString={timeString} />
+        <InviteForm username={userId} token={token} dateString={dateString} timeString={timeString} />
           </MuiPickersUtilsProvider>
           
         )}

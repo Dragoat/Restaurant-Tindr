@@ -80,7 +80,7 @@ class Main extends Component {
                     <Route path='/home' component={() => <Home />}/>
                      <Route path ='/invite' component={() => <Invite />}/>
                      <Route path = '/invitations' component={() => <InviteData />}/>
-     {/* <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/> */}
+                    <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                 </Switch>
             </div>
         )

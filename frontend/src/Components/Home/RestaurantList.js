@@ -9,8 +9,8 @@ class RestaurantList extends React.Component {
         {
           (this.props.businesses && this.props.businesses.slice(0, 10).map(business => {
             return (
-            <Restaurant business={business} key={business.id} /> 
-          )}))
+            <Restaurant businesses={this.props.businesses} business={business} key={business.id} /> 
+            )}))
         }
         </div>
       </div>
@@ -18,4 +18,4 @@ class RestaurantList extends React.Component {
   }
 }
 
-export default RestaurantList;
+export default RestaurantList
