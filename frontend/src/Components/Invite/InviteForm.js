@@ -1,10 +1,8 @@
 import React from 'react';
 import './inviteform.css';
 import axios from 'axios';
-import Home from '../Home/Home';
-import { NavLink } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Nav } from 'reactstrap';
+
 
 
 /*************************************************state****************************************************************/

@@ -1,20 +1,21 @@
-import React from 'react';
-import Restaurant from './Restaurant';
+import React from 'react'
+import Restaurant from './Restaurant'
 
 class RestaurantList extends React.Component {
+
   render() {
     return (
       <div>
         <div>
         {
-          (this.props.businesses && this.props.businesses.slice(0, 10).map(business => {
+          (this.props.restaurants && this.props.restaurants.slice(0, 10).map(business => {
             return (
-            <Restaurant businesses={this.props.businesses} business={business} key={business.id} /> 
+            <Restaurant inviteId={this.props.inviteId} token={this.props.token} businesses={this.props.restaurants} business={business} key={business.id} /> 
             )}))
         }
         </div>
       </div>
-    );
+    )
   }
 }
 

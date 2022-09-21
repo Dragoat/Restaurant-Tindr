@@ -1,12 +1,14 @@
-import { React, useEffect } from 'react';
-import axios from 'axios';
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import RestaurantList from './RestaurantList';
+import { React, useEffect } from 'react'
+import axios from 'axios'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import RestaurantList from './RestaurantList'
+
 function InviteData(props) {
 
     const [inviteData, setInviteData] = useState({});
     const [businessList, setBusinessList] = useState({businesses: []});
+    const [hide, setHide] = useState(true)
     const location = useLocation()
     const inviteId = location.state.inviteId
     const token = location.state.token
@@ -35,21 +37,20 @@ useEffect(() => {
                     console.log(response.data)
                     setBusinessList(response.data)
                     console.log(businessList.businesses.id)
-                }) 
+                })
+                setHide(current => !current);
             }
 
     return ( 
         <>
-        <div>invite data</div>
-        <div>Invite ID: {inviteData.inviteId}</div>
-        <div>Sender ID: {inviteData.senderId}</div>
-        <div>Appointment: {inviteData.appointment}</div>
-        <div>Location Search: {inviteData.locationSearch}</div>
-        <div>Food Search: {inviteData.foodSearch}</div>
-        <button onClick={viewList}>View List</button> 
-        <RestaurantList  businesses={businessList.businesses}/>
+        <div>invite data
+        <p>Invite ID: {inviteData.inviteId} Sender ID: {inviteData.senderId} Appointment: {inviteData.appointment} </p>
+        <p>Food Search: {inviteData.foodSearch} Location Search: {inviteData.locationSearch}</p>
+        </div>
+        {hide && <button onClick={viewList}>View Restaurant Options for Your Event</button>}
+        <RestaurantList inviteId={inviteId} token={token} restaurants={businessList.businesses}/>
         </>
-     );
+     )
 }
 
-export default InviteData;
+export default InviteData
