@@ -42,14 +42,15 @@ useEffect(() => {
             }
 
     return ( 
-        <>
+        <div className='Tinderlicious'>
 
         {/* invite information at the top of the invitation page */}
-        <div>Invite Information:
-        <p>Invite ID: {inviteData.inviteId} Sender ID: {inviteData.senderId} Appointment: {inviteData.appointment} </p>
-        <p>Food Search: {inviteData.foodSearch} Location Search: {inviteData.locationSearch}</p>
+        <div >Invite Information:
+        <p>Invite ID: {inviteData.inviteId} - Sender ID: {inviteData.senderId} - Appointment: {inviteData.appointment} </p>
+        <p>Food Search: {inviteData.foodSearch} - Location Search: {inviteData.locationSearch}</p>
         </div>
-        <button onClick={viewList}>View and Submit Restaurant Options for Your Event</button>
+        <button onClick={viewList} className="view-and-submit">View and Submit Restaurant Options for Your Event</button>
+        
 
         {/* this is the list for the invitation list of restaurants */}
         <RestaurantList inviteId={inviteId} token={token} restaurants={businessList.businesses}/>
@@ -60,7 +61,7 @@ useEffect(() => {
         <ShowFinalists token={token} inviteId={inviteId} foodSearch={inviteData.foodSearch} locationSearch={inviteData.locationSearch}/>
         </div>
 
-        </>
+        </div>
      )
 }
 

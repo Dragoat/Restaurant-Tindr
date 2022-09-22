@@ -10,6 +10,7 @@ const store = ConfigureStore();
 function App() {
 
   return (
+     <div id="page-container">
     <Provider store={store}>
       <BrowserRouter>
         <>
@@ -18,7 +19,7 @@ function App() {
           </>
       </BrowserRouter>
       </Provider>
-     
+     </div>
   );
 }
 

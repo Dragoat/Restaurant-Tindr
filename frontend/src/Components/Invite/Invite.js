@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import './invite.css';
 import InviteForm from './InviteForm';
 import timeAndDate from './timeAndDate.svg';
+import Invitations from '../Home/Invitations';
+import SentData from '../Home/SentData';
 import DateMomentUtils from '@date-io/moment';
 import {
   KeyboardDatePicker,
@@ -60,6 +62,8 @@ function Invite() {
               <button onClick={onSubmit} className='save-date'>Save Date and Time</button>
               <p className='pro-tip'>Pro tip: invite your friend even if you know they can't go,
                 it's nice to know you were at least thought of instead of not getting an invite at all❤️</p>
+              <Invitations />
+              <SentData />
                <div>
             <Link to='/home'>
             <button className='return-home'>return home</button>
@@ -70,13 +74,16 @@ function Invite() {
         )}
     
       {/* <div className=''> */}
-      {isShown && (
+          {isShown && (
+            <>
         <MuiPickersUtilsProvider utils={DateMomentUtils}>
      <img src={timeAndDate} alt="timeAndDate" className="timeAndDate-img" />
               <h3 className='creating-invite'>Creating invitation for {dateString} at {timeString}</h3>
-                 <button onClick={changeDate} className='change'>Change Event Date</button>
+                 <button onClick={changeDate} className='change'>Add an event</button>
         <InviteForm username={userId} token={token} dateString={dateString} timeString={timeString} />
-          </MuiPickersUtilsProvider>
+            </MuiPickersUtilsProvider>
+              
+              </>
           
         )}
          </div>

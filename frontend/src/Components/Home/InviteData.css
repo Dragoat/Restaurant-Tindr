@@ -1,5 +1,23 @@
 .finalist-restaurants {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+}
+.view-and-submit{
+color: rgb(0, 0, 0);
+    background-color: rgba(255, 115, 0, 0.594);
+    border-radius: 5%;
+    font-family: Helvetica, sans-serif;
+ 
 }
 
+
+.view-and-submit:hover {
+    color: white;
+    background-color: black;
+    box-shadow: 3px 3px 1px 1px rgba(16, 16, 19, 0.2);
+
+}
+.show-finalist-restaurants{
+    font-family: Helvetica, sans-serif;
+    color:transparent;
+}

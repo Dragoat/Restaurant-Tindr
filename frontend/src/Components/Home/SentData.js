@@ -27,8 +27,8 @@ function SentData() {
     }, [])
 
     return ( 
-        <div>
-            <h1>Sent</h1>
+        <div className="sent1">
+            {/* <h1>Sent</h1> */}
               {invitationList.map((invite) => {
                     return (
                     <div id={invite.userId} key={invite.inviteId}>

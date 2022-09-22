@@ -52,8 +52,8 @@ function Finalists(props) {
 
     return ( 
         <div>
-        <button className='temp-btn' onClick={temporaryButton}>temporary button to display the restaurants</button>
-        <h1>✨Finalists✨</h1>
+        <button className='temp-btn' onClick={temporaryButton}><h1>✨Finalists✨</h1></button>
+        
         <FinalRestaurantList inviteId={inviteId} token={token} restaurants={businessList.businesses}/>
         </div>
      );

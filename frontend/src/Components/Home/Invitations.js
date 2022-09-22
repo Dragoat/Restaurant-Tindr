@@ -27,7 +27,7 @@ function Invitations() {
 
     return ( 
         <div>
-            <h1>Your Invitations</h1>
+            <h3>Your Invitations</h3>
               {invitationList.map((invite) => {
                     return (
                     <div id={invite.userId} key={invite.inviteId}>
