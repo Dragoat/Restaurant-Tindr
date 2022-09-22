@@ -36,7 +36,7 @@ function Invitations() {
                                 token: token
                             },
                         }}>
-                        <p>Invite: {invite.inviteId}</p>
+                        <p>Invite for {invite.appointment} from user #{invite.inviteId}</p>
                         </Link>
                     </div>
                     )

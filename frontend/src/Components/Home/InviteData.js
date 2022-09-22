@@ -8,7 +8,6 @@ function InviteData(props) {
 
     const [inviteData, setInviteData] = useState({})
     const [businessList, setBusinessList] = useState({businesses: []})
-    // const [hide, setHide] = useState(true)
     const location = useLocation()
     const inviteId = location.state.inviteId
     const token = location.state.token
@@ -39,12 +38,11 @@ useEffect(() => {
                     setBusinessList(response.data)
                     console.log(businessList.businesses.id)
                 })
-                // setHide(current => !current);
             }
 
     return ( 
         <>
-        <div>invite data
+        <div>Invite Information:
         <p>Invite ID: {inviteData.inviteId} Sender ID: {inviteData.senderId} Appointment: {inviteData.appointment} </p>
         <p>Food Search: {inviteData.foodSearch} Location Search: {inviteData.locationSearch}</p>
         </div>

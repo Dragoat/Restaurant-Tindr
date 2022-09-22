@@ -9,6 +9,7 @@ function SentData() {
     const [invitationList, setInvitationList] = React.useState([])
 
     const userId = useSelector((state) => state.user.id)
+    const username= useSelector((state) => state.user.username)
     const token = useSelector((state) => state.token.token)
 
     useEffect(() => {
@@ -36,8 +37,10 @@ function SentData() {
                                 token: token
                             },
                         }}>
-                        <p>Invite: {invite.inviteId}</p>
+                        <p>Invite for {invite.appointment} to user #{invite.inviteId}</p>
                         </Link>
+                     
+
                     </div>
                     )
             })} 

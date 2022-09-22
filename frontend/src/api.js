@@ -26,9 +26,9 @@ const apiData = {
                 rating: business.rating,
                 displayPhone: business.display_phone,
                 reviewCount: business.review_count
-            }));
-        }
+            }))
+     }
   }
-};
+}
 
 export default apiData;

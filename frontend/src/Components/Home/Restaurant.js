@@ -1,40 +1,35 @@
 import axios from "axios"
-import { React, useEffect, useState } from "react"
+import './Restaurant.css'
 
 function Restaurant (props) {
 
-  const [restaurantList, setRestaurantList] = useState([])
-  const [object, setObject] = useState([])
-
-  const liked = () => {
-    const obj = {
-      business: props.business.id,
-      restaurantName: props.business.name,
-      restaurantAddress: props.business.location.address1,
-      restaurantPhone: props.business.display_phone,
-      restaurantImage: props.business.image_url
-    }
-
-    setRestaurantList([...restaurantList, ...obj])
-
+  const noVoteData = {
+    inviteId: props.inviteId,
+    placeId: props.business.id
   }
 
-    useEffect(() => {
-    console.log(restaurantList)
-  }, [restaurantList])
+  const sendToNoVote = () => {
+    axios.post('http://localhost:8081/invite_location', noVoteData, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + props.token
+      }
+    })
+    .then(() => {
+      console.log('Removed from event')
+    })
+  }
 
-  
   return (
       <div className="business">
               <h2>{props.business.name}</h2>
-              <img src={props.business.image_url} />
-              <a href = {`https://maps.google.com/?q=${props.business.latitude},${props.business.longitude}`}>View on Google Maps</a>
+              <img className="image" src={props.business.image_url} alt={props.business.name} />
               <a href={"tel:" + props.business.display_phone}>{props.business.display_phone}</a>
               <p>{props.business.location.display_address[0]} {props.business.location.display_address[1]}</p>
               <p>⭐️{`${props.business.rating} stars`}</p>
-              <button onClick={liked}>Add to Finalists List</button>
+              <button className='button' onClick={sendToNoVote}>Remove From Event</button>
       </div>
     )
-}
+  }
 
 export default Restaurant
