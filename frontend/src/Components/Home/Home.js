@@ -6,6 +6,7 @@ import fire from '../Main/fire.svg';
 import './home.css';
 import Invitations from './Invitations';
 import AppimageSilder from '../Business/AppimageSilder';
+import SentData from './SentData';
 
 class Home extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class Home extends React.Component {
          <AppimageSilder/>
         </div>
         <Invitations />
+        <SentData />
           <SearchBar searchYelp={this.searchData} />
         <BusinessList businesses={this.state.businesses} />
       </>

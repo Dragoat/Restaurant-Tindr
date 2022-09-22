@@ -6,9 +6,9 @@ import RestaurantList from './RestaurantList'
 
 function InviteData(props) {
 
-    const [inviteData, setInviteData] = useState({});
-    const [businessList, setBusinessList] = useState({businesses: []});
-    const [hide, setHide] = useState(true)
+    const [inviteData, setInviteData] = useState({})
+    const [businessList, setBusinessList] = useState({businesses: []})
+    // const [hide, setHide] = useState(true)
     const location = useLocation()
     const inviteId = location.state.inviteId
     const token = location.state.token
@@ -30,7 +30,8 @@ useEffect(() => {
     const viewList = () => {
         axios.get(`http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${inviteData.foodSearch}&location=${inviteData.locationSearch}`, { 
             headers: {
-                'Authorization': 'Bearer NFObK7SDG3Ydps6H3FWcww0uarQlzVqnY_osBgmG4wg-9K2v7bVsu5fachNVIxtuxL6Eknh0Su4EnukxiVVGlxaSF_U0a444-gqV0vnTjvs7w4C-1rYr68jKgn8OY3Yx'
+                'Authorization': 'Bearer NFObK7SDG3Ydps6H3FWcww0uarQlzVqnY_osBgmG4wg-9K2v7bVsu5fachNVIxtuxL6Eknh0Su4EnukxiVVGlxaSF_U0a444-gqV0vnTjvs7w4C-1rYr68jKgn8OY3Yx',
+                'Access-Control-Allow-Origin': '*',
                 }
                 })
                 .then(response => {
@@ -38,7 +39,7 @@ useEffect(() => {
                     setBusinessList(response.data)
                     console.log(businessList.businesses.id)
                 })
-                setHide(current => !current);
+                // setHide(current => !current);
             }
 
     return ( 
@@ -47,8 +48,9 @@ useEffect(() => {
         <p>Invite ID: {inviteData.inviteId} Sender ID: {inviteData.senderId} Appointment: {inviteData.appointment} </p>
         <p>Food Search: {inviteData.foodSearch} Location Search: {inviteData.locationSearch}</p>
         </div>
-        {hide && <button onClick={viewList}>View Restaurant Options for Your Event</button>}
+        <button onClick={viewList}>View and Submit Restaurant Options for Your Event</button>
         <RestaurantList inviteId={inviteId} token={token} restaurants={businessList.businesses}/>
+
         </>
      )
 }

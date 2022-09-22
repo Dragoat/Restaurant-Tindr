@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import {Link} from "react-router-dom";
 
-function Invitations() {
+function SentData() {
 
     const [invitationList, setInvitationList] = React.useState([])
 
@@ -12,7 +12,7 @@ function Invitations() {
     const token = useSelector((state) => state.token.token)
 
     useEffect(() => {
-        axios.get('http://localhost:8081/invite_list/invitee/' + userId, {
+        axios.get('http://localhost:8081/invites/sender/' + userId, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
@@ -25,7 +25,7 @@ function Invitations() {
 
     return ( 
         <div>
-            <h1>Your Invitations</h1>
+            <h1>Sent</h1>
               {invitationList.map((invite) => {
                     return (
                     <div id={invite.userId} key={invite.inviteId}>
@@ -43,9 +43,11 @@ function Invitations() {
             })} 
 
         </div>
+
+     
      )
 }
 
-export default Invitations
+export default SentData
 
    
