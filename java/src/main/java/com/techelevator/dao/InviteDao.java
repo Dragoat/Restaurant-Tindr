@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface InviteDao {
 
-    boolean createInvite(Invite invite);
+    int createInvite(Invite invite);
 
     void updateInvite(Invite invite);
 

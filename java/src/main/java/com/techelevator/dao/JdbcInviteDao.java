@@ -22,7 +22,7 @@ public class JdbcInviteDao implements InviteDao {
     }
 
     @Override
-    public boolean createInvite(@RequestBody Invite invite) {
+    public int createInvite(@RequestBody Invite invite) {
         boolean inviteCreated = false;
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "invite_id";
@@ -41,7 +41,7 @@ public class JdbcInviteDao implements InviteDao {
         int newInviteId = (int) keyHolder.getKeys().get(id_column);
 
         System.out.println(inviteCreated);
-        return inviteCreated;
+        return newInviteId;
     }
 
     @Override

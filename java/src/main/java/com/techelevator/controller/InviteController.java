@@ -31,8 +31,9 @@ public class InviteController {
     }
 
     @PostMapping(value = "")
-    public void createInvite(@RequestBody Invite invite) {
-        inviteDao.createInvite(invite);
+    public int createInvite(@RequestBody Invite invite) {
+        int invite_id=inviteDao.createInvite(invite);
+        return invite_id;
     }
 
     @PutMapping(value = "")
