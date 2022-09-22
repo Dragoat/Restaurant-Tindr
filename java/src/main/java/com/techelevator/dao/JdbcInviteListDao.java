@@ -29,7 +29,7 @@ public class JdbcInviteListDao implements InviteListDao{
            statement.setInt(2, inviteList.getRecipientId());
            return statement;
        });
-            jdbcTemplate.update(sql, inviteList.getInviteId(),inviteList.getRecipientId());
+
         }
 
     @Override
