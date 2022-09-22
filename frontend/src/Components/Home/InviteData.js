@@ -3,8 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import RestaurantList from './RestaurantList'
-import { Link } from 'react-router-dom'
-import Finalists from './Finalists'
+import ShowFinalists from './ShowFinalists'
 
 function InviteData(props) {
 
@@ -13,8 +12,8 @@ function InviteData(props) {
     const location = useLocation()
     const inviteId = location.state.inviteId
     const token = location.state.token
-    console.log(token)
-    console.log(inviteId)
+    // console.log(token)
+    // console.log(inviteId)
 
 useEffect(() => {
     axios.get('http://localhost:8081/invites/' + inviteId, {
@@ -42,34 +41,15 @@ useEffect(() => {
                 })
             }
 
-
-
-
     return ( 
         <>
         <div>Invite Information:
         <p>Invite ID: {inviteData.inviteId} Sender ID: {inviteData.senderId} Appointment: {inviteData.appointment} </p>
         <p>Food Search: {inviteData.foodSearch} Location Search: {inviteData.locationSearch}</p>
-
-        
         </div>
-        <Link  to={{
-            pathname: '/finalists',
-            state: {
-                inviteId: inviteData.inviteId,
-                token: token
-            },
-            
-        }}>
-        <button>View Finalists Page</button>
-        </Link>
-
-
-
+        <ShowFinalists token={token} inviteId={inviteId}/>
         <button onClick={viewList}>View and Submit Restaurant Options for Your Event</button>
         <RestaurantList inviteId={inviteId} token={token} restaurants={businessList.businesses}/>
-        
-
         </>
      )
 }
