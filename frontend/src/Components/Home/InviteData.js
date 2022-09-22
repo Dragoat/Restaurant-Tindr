@@ -47,7 +47,7 @@ useEffect(() => {
         <p>Invite ID: {inviteData.inviteId} Sender ID: {inviteData.senderId} Appointment: {inviteData.appointment} </p>
         <p>Food Search: {inviteData.foodSearch} Location Search: {inviteData.locationSearch}</p>
         </div>
-        <ShowFinalists token={token} inviteId={inviteId}/>
+        <ShowFinalists token={token} inviteId={inviteId} foodSearch={inviteData.foodSearch} locationSearch={inviteData.locationSearch}/>
         <button onClick={viewList}>View and Submit Restaurant Options for Your Event</button>
         <RestaurantList inviteId={inviteId} token={token} restaurants={businessList.businesses}/>
         </>

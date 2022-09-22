@@ -12,9 +12,8 @@ function ShowFinalists(props) {
 
     return ( 
         <div>
-            <p>{props.inviteId}</p>
-        <button onClick={toggleVisibility}>show finalists</button>
-        {visible && <Finalists token={props.token} inviteId={props.inviteId} />}
+        <button onClick={toggleVisibility}>Show Finalist Restaurants</button>
+        {visible && <Finalists token={props.token} inviteId={props.inviteId} foodSearch={props.foodSearch} locationSearch={props.locationSearch} />}
         </div>
      );
 }
