@@ -1,12 +1,10 @@
 import './FinalRestaurant.css'
 
 function FinalRestaurant (props) {
-
-
+  //individual restaurant card data for the finalist restaurant list
   return (
     <>
     <div>
-      
     </div>
       <div className="business">
               <h2>{props.business.name}</h2>

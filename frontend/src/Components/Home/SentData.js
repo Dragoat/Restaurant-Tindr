@@ -6,6 +6,8 @@ import {Link} from "react-router-dom";
 
 function SentData() {
 
+    //Renders Invitations you've sent list on Home page -- Your received invitations list is in Invitations.js
+
     const [invitationList, setInvitationList] = React.useState([])
 
     const userId = useSelector((state) => state.user.id)

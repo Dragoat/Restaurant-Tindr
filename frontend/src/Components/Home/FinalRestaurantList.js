@@ -2,7 +2,7 @@ import React from 'react'
 import FinalRestaurant from './FinalRestaurant'
 
 class FinalRestaurantList extends React.Component {
-
+  //renders the list of businesses for the finalist restaurant list 
   render() {
     return (
       <div>

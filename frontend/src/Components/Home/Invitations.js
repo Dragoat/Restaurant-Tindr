@@ -6,6 +6,8 @@ import {Link} from "react-router-dom"
 
 function Invitations() {
 
+    //Renders Invitations sent to you list on Home page -- Your sent invitations list is in SentData.js
+
     const [invitationList, setInvitationList] = React.useState([])
 
     const userId = useSelector((state) => state.user.id)
@@ -30,15 +32,13 @@ function Invitations() {
                     return (
                     <div id={invite.userId} key={invite.inviteId}>
                         <Link  to={{
-                            pathname: '/invitations/' + invite.inviteId,
+                            pathname: '/invitations/' + invite.inviteId,  //this path renders InvtationData.js component for specific invite
                             state: {
                                 inviteId: invite.inviteId,
                                 token: token
                             },
                         }}>
                         <p>Invite from user #{invite.inviteId}</p>
-                        
-                        
                         </Link>
                     </div>
                     )

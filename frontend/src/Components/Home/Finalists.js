@@ -13,8 +13,8 @@ function Finalists(props) {
     const foodSearch = props.foodSearch
     const locationSearch = props.locationSearch
 
-
-// useEffect(() => {
+//gonna need later
+// useEffect(() => { 
     const temporaryButton = () => {
     
     //pulls ID's of restaurants that have been voted no
@@ -46,6 +46,7 @@ function Finalists(props) {
     }
 
     // }, [])
+    //for useEffect block
 
 
 
