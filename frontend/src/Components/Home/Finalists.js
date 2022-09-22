@@ -1,18 +1,17 @@
 import './Finalist.css'
 import axios from "axios"
 import { React, useEffect, useState } from "react"
+import FinalRestaurantList from './FinalRestaurantList'
 
 function Finalists(props) {
 
     const [votedNoIDs, setVotedNoIDs] = useState([])
-    const [finalist, setFinalist] = useState([])
+    const [businessList, setBusinessList] = useState({businesses: []})
 
     const token = props.token
     const inviteId = props.inviteId
     const foodSearch = props.foodSearch
     const locationSearch = props.locationSearch
-
-
 
 
 // useEffect(() => {
@@ -27,7 +26,8 @@ function Finalists(props) {
     .then(response => {
     //logs ID's of restaurants that have been voted no
         console.log(response.data)
-        // setVotedNoIDs(response.data)
+        // const x = response.data
+        setVotedNoIDs(response.data)
     })
     //calls yelp api with food and location search
     axios.get(`http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${foodSearch}&location=${locationSearch}`, { 
@@ -39,28 +39,21 @@ function Finalists(props) {
     //logs list of all invite restaurants - need to filter out restaurants that have been voted no
     .then(response => {
         console.log(response.data)
-
+        setBusinessList(response.data)
     })
-    
-
-
-
-
 
 
     }
 
     // }, [])
 
+
+
     return ( 
         <div>
-        <button className='temp-btn' onClick={temporaryButton}>Temporary Button</button>
-        <h1>finalists</h1>
-        <p>stuff</p>
-        <p>stuff</p>
-        <p>stuff</p>
-        <p>stuff</p>
-        <p>stuff</p>
+        <button className='temp-btn' onClick={temporaryButton}>temporary button to display the restaurants</button>
+        <h1>✨Finalists✨</h1>
+        <FinalRestaurantList inviteId={inviteId} token={token} restaurants={businessList.businesses}/>
         </div>
      );
 }
