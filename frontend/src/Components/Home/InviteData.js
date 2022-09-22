@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import RestaurantList from './RestaurantList'
+import { Link } from 'react-router-dom'
+import Finalists from './Finalists'
 
 function InviteData(props) {
 
@@ -40,14 +42,33 @@ useEffect(() => {
                 })
             }
 
+
+
+
     return ( 
         <>
         <div>Invite Information:
         <p>Invite ID: {inviteData.inviteId} Sender ID: {inviteData.senderId} Appointment: {inviteData.appointment} </p>
         <p>Food Search: {inviteData.foodSearch} Location Search: {inviteData.locationSearch}</p>
+
+        
         </div>
+        <Link  to={{
+            pathname: '/finalists',
+            state: {
+                inviteId: inviteData.inviteId,
+                token: token
+            },
+            
+        }}>
+        <button>View Finalists Page</button>
+        </Link>
+
+
+
         <button onClick={viewList}>View and Submit Restaurant Options for Your Event</button>
         <RestaurantList inviteId={inviteId} token={token} restaurants={businessList.businesses}/>
+        
 
         </>
      )

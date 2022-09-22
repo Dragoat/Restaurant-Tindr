@@ -13,6 +13,7 @@ import fire from './fire.svg'
 import DarkMode from '../../DarkMode'
 import darkMode from '../../DarkMode.css'
 import InviteData from '../Home/InviteData'
+import Finalists from '../Home/Finalists'
 
 
 const mapStateToProps = state => {
@@ -80,6 +81,7 @@ class Main extends Component {
                     <Route path='/home' component={() => <Home />}/>
                      <Route path ='/invite' component={() => <Invite />}/>
                      <Route path = '/invitations' component={() => <InviteData />}/>
+                     <Route path = '/finalists' component={() => <Finalists />}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                 </Switch>
             </div>

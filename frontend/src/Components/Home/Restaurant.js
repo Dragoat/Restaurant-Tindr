@@ -21,6 +21,10 @@ function Restaurant (props) {
   }
 
   return (
+    <>
+    <div>
+      
+    </div>
       <div className="business">
               <h2>{props.business.name}</h2>
               <img className="image" src={props.business.image_url} alt={props.business.name} />
@@ -29,6 +33,7 @@ function Restaurant (props) {
               <p>⭐️{`${props.business.rating} stars`}</p>
               <button className='button' onClick={sendToNoVote}>Remove From Event</button>
       </div>
+    </>
     )
   }
 

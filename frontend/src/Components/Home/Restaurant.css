@@ -2,3 +2,7 @@
     margin: 10px;
 }
 
+.button:hover {
+    color: red;
+}
+
