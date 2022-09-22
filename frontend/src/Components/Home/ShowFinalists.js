@@ -11,10 +11,12 @@ function ShowFinalists(props) {
     }
 
     return ( 
-        <div className="ShowFinalists">
-        <h3 className="show-finalist-restaurants">Show Finalist Restaurants</h3>
+       
+        <div className='Tinderlicious1'>
+            <button onClick={toggleVisibility} className='view-and-submit' >Show Finalist Restaurants</button>
             {visible && <Finalists token={props.token} inviteId={props.inviteId} foodSearch={props.foodSearch} locationSearch={props.locationSearch} />}
-        </div>
+       
+       </div>
      );
 }
 

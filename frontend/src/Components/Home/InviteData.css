@@ -1,6 +1,7 @@
 .finalist-restaurants {
     display: flex;
-    justify-content: center;
+        justify-content: flex-start;
+       
 }
 .view-and-submit{
 color: rgb(0, 0, 0);
@@ -19,5 +20,12 @@ color: rgb(0, 0, 0);
 }
 .show-finalist-restaurants{
     font-family: Helvetica, sans-serif;
-    color:transparent;
+    color:black;
+}
+view-and{
+    border: none;
+    border-bottom: 1px;
+}
+.Tinderlicious1{
+width: 100%;
 }

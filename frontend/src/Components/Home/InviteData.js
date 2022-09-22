@@ -42,7 +42,7 @@ useEffect(() => {
             }
 
     return ( 
-        <div className='Tinderlicious'>
+         <div className='Tinderlicious'>
 
         {/* invite information at the top of the invitation page */}
         <div >Invite Information:
@@ -60,9 +60,9 @@ useEffect(() => {
         <div className='finalist-restaurants'>
         <ShowFinalists token={token} inviteId={inviteId} foodSearch={inviteData.foodSearch} locationSearch={inviteData.locationSearch}/>
         </div>
-
-        </div>
+</div>
+       
      )
 }
 
-export default InviteData
+export default InviteData;

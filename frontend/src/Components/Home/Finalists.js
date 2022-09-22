@@ -41,6 +41,7 @@ function Finalists(props) {
         console.log(response.data)
         setBusinessList(response.data)
     })
+        
     //Filters out the restaurants that have been voted no
     //still testing, commented out for future implementation
     /*
@@ -53,8 +54,12 @@ function Finalists(props) {
     );
   };
 
+
+    }
     */
-    
+
+
+    }
 
     // }, [])
     //for useEffect block
@@ -70,4 +75,4 @@ function Finalists(props) {
      );
 }
 
-export default Finalists
+export default Finalists;
