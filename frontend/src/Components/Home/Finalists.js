@@ -41,9 +41,20 @@ function Finalists(props) {
         console.log(response.data)
         setBusinessList(response.data)
     })
+    //Filters out the restaurants that have been voted no
+    //still testing, commented out for future implementation
+    /*
+     const removeRestaurantFromArray = () => {
+    // ✅ remove Id from array
+    setVotedNoIDs(current =>
+      current.filter(element => {
+        return element !== inviteId;
+      }),
+    );
+  };
 
-
-    }
+    */
+    
 
     // }, [])
     //for useEffect block
